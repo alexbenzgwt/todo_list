@@ -10,7 +10,12 @@ import ClientsPage from './pages/ClientsPage';
 import InvoicePage from './pages/InvoicePage';
 import ReportsPage from './pages/ReportsPage';
 import HelpPage from './pages/HelpPage';
+import ForgotPass from './components/auth/ForgotPass';
 import './App.css';
+import SignUp from './components/auth/SignUp';
+import Terms from './components/auth/Terms';
+import Verification from './components/auth/Verification';
+import ContactPage from './pages/ContactPage';
 
 function App() {
   return (
@@ -20,6 +25,10 @@ function App() {
           <Routes>
             {/* Public Routes */}
             <Route path="/login" element={<Login/>} />
+            <Route path="/forgotpass" element={<ForgotPass/>}/>
+            <Route path="/signup" element={<SignUp/>}/>
+            <Route path="/terms" element={<Terms/>}/>
+            <Route path = "/verification" element={<Verification/>}/>
             
             {/* Protected Routes */}
             <Route path="/dashboard" element={
@@ -49,7 +58,7 @@ function App() {
             <Route path="/dashboard/completed" element={
               <ProtectedRoute>
                 <Layout>
-                  <TasksPage filter="completed" />
+                  <TasksPage filter="completed" /> 
                 </Layout>
               </ProtectedRoute>
             } />
@@ -105,7 +114,7 @@ function App() {
             <Route path="/dashboard/contact" element={
               <ProtectedRoute>
                 <Layout>
-                  <HelpPage />
+                  <ContactPage/>
                 </Layout>
               </ProtectedRoute>
             } />

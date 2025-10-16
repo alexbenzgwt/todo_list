@@ -1,15 +1,12 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { loginStart, loginSuccess, loginFailure } from '../../store/slices/authSlice';
-import { CheckSquare, User, Lock } from 'lucide-react';
-import { AiOutlineEye } from "react-icons/ai";
-import { AiOutlineEyeInvisible } from "react-icons/ai";
-import ForgotPass from './ForgotPass';
+import { Link, useNavigate } from 'react-router-dom';
+import { loginFailure, loginStart, loginSuccess } from '../../store/slices/authSlice';
+import { Lock, User } from 'lucide-react';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
-const Login = () => {
-  const [formData, setFormData] = useState({
+const SignUp = () => {
+     const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
@@ -74,10 +71,10 @@ const Login = () => {
         <div className='size-full mb-1 border-3 border-[#F5C4BF] rounded-2xl bg-white shadow sm:rounded-3xl px-4 py-4'>
         
         <p className=" text-center text-3xl font-semibold text-[#444444] flex justify-items-start">
-          Login
+          SignUp Free
         </p>
         <p className="mt-1 text-center text-medium text-[#444444] flex justify-items-start font-medium">
-          Login to manage your freelance day
+          Signup to get started today
         </p>
       
       <div className="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
@@ -85,22 +82,22 @@ const Login = () => {
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email" className="block text-medium font-medium text-[#444444]">
-                Email address
+                Full Name
               </label>
               <div className="mt-1 relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <User className="h-5 w-5 text-gray-400" />
                 </div>
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
+                  id="name"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
                   required
-                  value={formData.email}
+                  value={formData.name}
                   onChange={handleChange}
                   className="appearance-none block w-full pl-10 pr-3 py-3 border bg-[#d6d6d61e] border-gray-600 rounded-md placeholder-gray-500 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
-                  placeholder="Enter your email" 
+                  placeholder="Enter your name" 
                 />
               </div>
             </div>
@@ -127,12 +124,12 @@ const Login = () => {
               </div>
               <p className='absolute right-3 bottom-3 size-5 cursor-pointer' onClick={handleClick}>{show ? <AiOutlineEyeInvisible />:<AiOutlineEye />}</p>
             </div>
-              <div className='flex justify-items-center justify-between'>
+              <div className='flex justify-items-center gap-1'>
                 <div className='flex gap-2'>
                   <input type="checkbox" id='checkbox' name='checkbox' className='size-4 relative top-1.5'/>
-                <label htmlFor="Remind" className='text-[#1F1F1F]'>Remember me</label>
+                <label htmlFor="Remind" className='text-[#1F1F1F] '>I agree to the</label>
                 </div>
-                <Link  to="/forgotpass"><p className='text-[#0094E4] underline cursor-pointer'>forgot password?</p></Link>
+                <Link  to="/terms"><p className='text-[#0094E4] cursor-pointer'>Terms of Services</p></Link>
                 
                 
               </div>
@@ -149,23 +146,19 @@ const Login = () => {
                 disabled={loading}
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               >
-                {loading ? 'Signing in...' : 'Login'}
+                {loading ? 'Signing in...' : 'Signup'}
               </button>
-              <img src="./src/assets/OR.png" alt="" />
-
+             
             </div>
           </form>
-          <div className='flex justify-center'>
-            <img src="./src/assets/Google Logo.png" alt="logo" style={{width:"45px", height:"45px"}} />
-            <p className='font-bold relative top-2'>Continue with Google</p>
-          </div>
+          
         </div>
       </div>
       </div>
       </div>
       <div className='mt-3'>
-        <span className='flex justify-center'>Don't have an account?
-        <Link to="/signup"><p className='text-red-600 font-bold underline' >Sign Up free</p></Link></span>
+        <span className='flex justify-center'>Already have an account?
+        <Link to="/login"><p className='text-red-600 font-bold underline' >Login</p></Link></span>
       </div> 
       <div>
         <div>
@@ -173,8 +166,7 @@ const Login = () => {
         </div>
       </div>
     </div> 
-    
-  );
-};
+  )
+}
 
-export default Login;
+export default SignUp
