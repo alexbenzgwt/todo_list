@@ -1,30 +1,34 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   loginStart,
   loginSuccess,
   loginFailure,
 } from "../../store/slices/authSlice";
 import { User, Lock } from "lucide-react";
+import TruedoitLogo from "../../assets/TruedoitLogo.png"; // ✅ Correct image import
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loading, error, isAuthenticated } = useSelector(
     (state) => state.auth
   );
 
+  // ✅ Redirect if already logged in
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/dashboard", { replace: true });
     }
   }, [isAuthenticated, navigate]);
 
+  // ✅ Handle input changes
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -32,11 +36,14 @@ const Login = () => {
     });
   };
 
+  // ✅ Handle login submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (loading) return;
+
     dispatch(loginStart());
 
+    // Mock login delay
     setTimeout(() => {
       if (
         formData.email === "admin@example.com" &&
@@ -59,10 +66,10 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col justify-center items-center px-4">
-      {/* Logo and tagline */}
+      {/* ✅ Logo and tagline */}
       <div className="flex flex-col items-center mb-6">
         <img
-          src="./src/assets/TruedoitLogo.png"
+          src={TruedoitLogo}
           alt="Truedoit Logo"
           className="w-36 mb-2"
         />
@@ -71,7 +78,7 @@ const Login = () => {
         </p>
       </div>
 
-      {/* Login box */}
+      {/* ✅ Login Card */}
       <div className="w-full max-w-md bg-white border border-red-200 rounded-2xl shadow-sm px-8 py-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-1">Login</h2>
         <p className="text-gray-500 text-sm mb-6">
@@ -79,7 +86,7 @@ const Login = () => {
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Email */}
+          {/* ✅ Email Field */}
           <div>
             <label
               htmlFor="email"
@@ -102,7 +109,7 @@ const Login = () => {
             </div>
           </div>
 
-          {/* Password */}
+          {/* ✅ Password Field */}
           <div>
             <label
               htmlFor="password"
@@ -124,6 +131,7 @@ const Login = () => {
               />
             </div>
 
+            {/* ✅ Remember Me + Forgot Password */}
             <div className="flex justify-between items-center mt-2 text-sm">
               <label className="flex items-center space-x-2 text-gray-600">
                 <input
@@ -132,23 +140,23 @@ const Login = () => {
                 />
                 <span>Remember me</span>
               </label>
-              <a
-                href="./src/auth/forgot.jsx"
+              <Link
+                to="/forgot"
                 className="text-blue-500 hover:text-blue-600 text-sm font-medium underline"
               >
                 Forgot password?
-              </a>
+              </Link>
             </div>
           </div>
 
-          {/* Error message */}
+          {/* ✅ Error Message */}
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
               {error}
             </div>
           )}
 
-          {/* Submit */}
+          {/* ✅ Submit Button */}
           <button
             type="submit"
             disabled={loading}
