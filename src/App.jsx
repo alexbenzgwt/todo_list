@@ -16,6 +16,7 @@ import SignUp from './components/auth/SignUp';
 import Terms from './components/auth/Terms';
 import Verification from './components/auth/Verification';
 import ContactPage from './pages/ContactPage';
+import FeedBackPage from './pages/FeedBackPage';
 
 function App() {
   return (
@@ -122,7 +123,7 @@ function App() {
             <Route path="/dashboard/feedback" element={
               <ProtectedRoute>
                 <Layout>
-                  <HelpPage />
+                  <FeedBackPage />
                 </Layout>
               </ProtectedRoute>
             } />
