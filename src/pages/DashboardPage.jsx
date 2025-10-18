@@ -52,21 +52,21 @@ const DashboardPage = () => {
 
   return (
     <div className="space-y-4 sm:space-y-6">
-      <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Dashboard</h1>
+      <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
       
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {stats.map((stat) => {
           const Icon = stat.icon;
           return (
-            <div key={stat.name} className="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-200">
+            <div key={stat.name} className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
               <div className="flex items-center">
                 <div className={`p-2 sm:p-3 rounded-lg ${stat.color}`}>
                   <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
                 </div>
                 <div className="ml-3 sm:ml-4">
-                  <p className="text-xs sm:text-sm font-medium text-gray-600">{stat.name}</p>
-                  <p className="text-lg sm:text-2xl font-bold text-gray-900">{stat.value}</p>
+                  <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">{stat.name}</p>
+                  <p className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</p>
                 </div>
               </div>
             </div>

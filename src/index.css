@@ -15,16 +15,47 @@ body {
   background-color: #111827;
 }
 
+/* Fix for browser dark mode - ensure all text is visible */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #111827 !important;
+    color: #f9fafb !important;
+  }
+  
+  /* Force all text to be visible in browser dark mode */
+  * {
+    color: #f9fafb !important;
+  }
+  
+  /* Override any black text that might be invisible */
+  .text-black, .text-gray-900, .text-gray-800, .text-gray-700 {
+    color: #f9fafb !important;
+  }
+  
+  /* Ensure backgrounds are dark */
+  .bg-white {
+    background-color: #1f2937 !important;
+  }
+  
+  .bg-gray-50 {
+    background-color: #374151 !important;
+  }
+  
+  .bg-gray-100 {
+    background-color: #4b5563 !important;
+  }
+}
+
 /* Modal positioning utilities */
 .modal-container {
   position: fixed;
   z-index: 50;
-  max-height: calc(100vh - 2rem);
+  max-height: calc(100vh - 1rem);
   overflow: hidden;
 }
 
 .modal-content {
-  max-height: calc(100vh - 4rem);
+  max-height: calc(100vh - 2rem);
   overflow-y: auto;
 }
 
@@ -36,22 +67,38 @@ body {
     left: 0.5rem;
     width: calc(100vw - 1rem);
     max-width: 320px;
+    max-height: calc(100vh - 1rem);
+  }
+  
+  .modal-content {
+    max-height: calc(100vh - 2rem);
+    padding: 1rem;
   }
 }
 
 @media (min-width: 641px) and (max-width: 768px) {
   .modal-container {
-    top: 3rem;
+    top: 2rem;
     right: 1rem;
     width: 350px;
+    max-height: calc(100vh - 4rem);
+  }
+  
+  .modal-content {
+    max-height: calc(100vh - 6rem);
   }
 }
 
 @media (min-width: 769px) {
   .modal-container {
-    top: 5rem;
+    top: 3rem;
     right: 1.5rem;
     width: 450px;
+    max-height: calc(100vh - 6rem);
+  }
+  
+  .modal-content {
+    max-height: calc(100vh - 8rem);
   }
 }
 
@@ -171,5 +218,363 @@ input[type="file"] {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Additional viewport fixes */
+.modal-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure no horizontal scrolling */
+body {
+  overflow-x: hidden;
+}
+
+/* Better text contrast in dark mode */
+.dark .text-gray-400 {
+  color: rgb(156 163 175); /* gray-400 */
+}
+
+.dark .text-gray-500 {
+  color: rgb(107 114 128); /* gray-500 */
+}
+
+.dark .text-gray-600 {
+  color: rgb(75 85 99); /* gray-600 */
+}
+
+/* Global dark mode fixes for better visibility */
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background-color: #111827;
+  color: #f9fafb;
+}
+
+/* Ensure all text is visible in dark mode */
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: #f9fafb;
+}
+
+.dark p, .dark span, .dark div {
+  color: #e5e7eb;
+}
+
+/* Fix for any missing dark mode classes */
+.dark .bg-white {
+  background-color: #1f2937;
+}
+
+.dark .text-gray-900 {
+  color: #f9fafb;
+}
+
+.dark .text-gray-800 {
+  color: #f3f4f6;
+}
+
+.dark .text-gray-700 {
+  color: #e5e7eb;
+}
+
+.dark .border-gray-200 {
+  border-color: #374151;
+}
+
+.dark .border-gray-300 {
+  border-color: #4b5563;
+}
+
+/* Force visibility for all text elements in dark mode */
+.dark * {
+  color: inherit;
+}
+
+.dark .text-gray-900 {
+  color: #f9fafb !important;
+}
+
+.dark .text-gray-800 {
+  color: #f3f4f6 !important;
+}
+
+.dark .text-gray-700 {
+  color: #e5e7eb !important;
+}
+
+.dark .text-gray-600 {
+  color: #d1d5db !important;
+}
+
+.dark .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+.dark .text-gray-400 {
+  color: #9ca3af !important;
+}
+
+/* Ensure all backgrounds are dark */
+.dark .bg-white {
+  background-color: #1f2937 !important;
+}
+
+.dark .bg-gray-50 {
+  background-color: #374151 !important;
+}
+
+.dark .bg-gray-100 {
+  background-color: #4b5563 !important;
+}
+
+/* Fix any remaining visibility issues */
+.dark input, .dark textarea, .dark select {
+  color: #f9fafb !important;
+  background-color: #374151 !important;
+}
+
+.dark input::placeholder, .dark textarea::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Refined dark mode text visibility fixes */
+.dark {
+  color-scheme: dark;
+}
+
+/* Target specific text elements that might be invisible */
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: #f9fafb !important;
+}
+
+.dark p, .dark span, .dark div, .dark label {
+  color: #e5e7eb !important;
+}
+
+.dark .text-gray-900 {
+  color: #f9fafb !important;
+}
+
+.dark .text-gray-800 {
+  color: #f3f4f6 !important;
+}
+
+.dark .text-gray-700 {
+  color: #e5e7eb !important;
+}
+
+.dark .text-gray-600 {
+  color: #d1d5db !important;
+}
+
+.dark .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+.dark .text-gray-400 {
+  color: #9ca3af !important;
+}
+
+.dark .text-gray-300 {
+  color: #d1d5db !important;
+}
+
+/* Fix for specific components that might have text issues */
+.dark .font-semibold, .dark .font-medium, .dark .font-bold {
+  color: #f9fafb !important;
+}
+
+.dark .text-sm, .dark .text-xs, .dark .text-base, .dark .text-lg, .dark .text-xl {
+  color: #e5e7eb !important;
+}
+
+/* Fix for buttons and interactive elements */
+.dark button {
+  color: #f9fafb !important;
+}
+
+.dark button span, .dark button div {
+  color: #f9fafb !important;
+}
+
+/* Fix for form elements */
+.dark input, .dark textarea, .dark select {
+  color: #f9fafb !important;
+  background-color: #374151 !important;
+}
+
+.dark label {
+  color: #e5e7eb !important;
+}
+
+/* Fix for navigation and menu items */
+.dark nav, .dark nav * {
+  color: #e5e7eb !important;
+}
+
+.dark .nav-link, .dark .nav-item {
+  color: #e5e7eb !important;
+}
+
+/* Ensure all backgrounds are properly dark */
+.dark .bg-white {
+  background-color: #1f2937 !important;
+}
+
+.dark .bg-gray-50 {
+  background-color: #374151 !important;
+}
+
+.dark .bg-gray-100 {
+  background-color: #4b5563 !important;
+}
+
+.dark .bg-gray-200 {
+  background-color: #6b7280 !important;
+}
+
+/* Ultimate text visibility fix - catch any remaining invisible text */
+.dark *:not(svg):not(path):not(circle):not(rect):not(line):not(polygon) {
+  color: #f9fafb !important;
+}
+
+/* Specific overrides for common text issues */
+.dark .text-black {
+  color: #f9fafb !important;
+}
+
+.dark .text-gray-900 {
+  color: #f9fafb !important;
+}
+
+.dark .text-gray-800 {
+  color: #f3f4f6 !important;
+}
+
+.dark .text-gray-700 {
+  color: #e5e7eb !important;
+}
+
+.dark .text-gray-600 {
+  color: #d1d5db !important;
+}
+
+.dark .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+.dark .text-gray-400 {
+  color: #9ca3af !important;
+}
+
+.dark .text-gray-300 {
+  color: #d1d5db !important;
+}
+
+.dark .text-gray-200 {
+  color: #e5e7eb !important;
+}
+
+.dark .text-gray-100 {
+  color: #f3f4f6 !important;
+}
+
+/* Force visibility for any text that might be using custom colors */
+.dark [class*="text-"] {
+  color: #f9fafb !important;
+}
+
+/* Additional browser dark mode fixes */
+@media (prefers-color-scheme: dark) {
+  /* Force all headings to be visible */
+  h1, h2, h3, h4, h5, h6 {
+    color: #f9fafb !important;
+  }
+  
+  /* Force all text elements to be visible */
+  p, span, div, label, button, a {
+    color: #f9fafb !important;
+  }
+  
+  /* Force all form elements to be visible */
+  input, textarea, select {
+    color: #f9fafb !important;
+    background-color: #374151 !important;
+  }
+  
+  /* Override any specific text colors that might be invisible */
+  .text-black, .text-gray-900, .text-gray-800, .text-gray-700, .text-gray-600 {
+    color: #f9fafb !important;
+  }
+  
+  /* Ensure all white backgrounds are dark */
+  .bg-white, .bg-gray-50, .bg-gray-100 {
+    background-color: #1f2937 !important;
+  }
+  
+  /* Fix for any components that might have black text */
+  .font-bold, .font-semibold, .font-medium {
+    color: #f9fafb !important;
+  }
+  
+  /* Fix for navigation and menu items */
+  nav, nav *, .nav-link, .nav-item {
+    color: #f9fafb !important;
+  }
+  
+  /* Fix for buttons and interactive elements */
+  button, button *, .btn, .btn * {
+    color: #f9fafb !important;
+  }
+}
+
+/* Ultimate fix for browser dark mode - works regardless of browser settings */
+@media (prefers-color-scheme: dark), (prefers-color-scheme: light) {
+  /* Force all text to be visible when browser is in dark mode */
+  body.dark, body[data-theme="dark"], .dark {
+    background-color: #111827 !important;
+    color: #f9fafb !important;
+  }
+  
+  /* Override any black or dark text that might be invisible */
+  .text-black, .text-gray-900, .text-gray-800, .text-gray-700 {
+    color: #f9fafb !important;
+  }
+  
+  /* Force all elements to have visible text */
+  *:not(svg):not(path):not(circle):not(rect):not(line):not(polygon) {
+    color: #f9fafb !important;
+  }
+  
+  /* Ensure all backgrounds are dark */
+  .bg-white {
+    background-color: #1f2937 !important;
+  }
+  
+  .bg-gray-50 {
+    background-color: #374151 !important;
+  }
+  
+  .bg-gray-100 {
+    background-color: #4b5563 !important;
+  }
+}
+
+/* Compact spacing for mobile */
+@media (max-width: 640px) {
+  .modal-content {
+    padding: 0.75rem;
+  }
+  
+  .space-y-3 > * + * {
+    margin-top: 0.5rem;
+  }
+  
+  .space-y-4 > * + * {
+    margin-top: 0.75rem;
   }
 }

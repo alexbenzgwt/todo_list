@@ -143,7 +143,7 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
       
       {/* Profile Popup */}
       <div className="modal-container transform transition-all duration-300 ease-out animate-in slide-in-from-right-4 fade-in">
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 ring-1 ring-black/5 dark:ring-gray-600/20 p-4 sm:p-6 modal-content">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 ring-1 ring-black/5 dark:ring-gray-600/20 p-4 sm:p-6 h-full flex flex-col">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">My Profile</h2>
@@ -156,7 +156,7 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
           </div>
 
           {/* Profile Info */}
-          <div className="flex items-center space-x-3 mb-6">
+          <div className="flex items-center space-x-3 mb-4">
             <div className="relative group">
               <img
                 src={profilePhoto}
@@ -179,7 +179,7 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
               {/* Upload Controls */}
               <div className="flex items-center space-x-2 mt-2">
                 <label className="cursor-pointer">
-                  <div className="flex items-center space-x-1 text-xs text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                  <div className="flex items-center space-x-1 text-xs text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                     <Upload className="h-3 w-3" />
                     <span>Upload Photo</span>
                     <input
@@ -191,10 +191,10 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
                     />
                   </div>
                 </label>
-                <span className="text-gray-300 dark:text-gray-600">|</span>
+                <span className="text-gray-300 dark:text-gray-500">|</span>
                 <button
                   onClick={handleRemovePhoto}
-                  className="text-xs text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+                  className="text-xs text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors"
                 >
                   Remove
                 </button>
@@ -204,7 +204,7 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
               {isUploading && (
                 <div className="flex items-center space-x-1 mt-1">
                   <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-red-600"></div>
-                  <span className="text-xs text-gray-600 dark:text-gray-400">Uploading...</span>
+                  <span className="text-xs text-gray-600 dark:text-gray-300">Uploading...</span>
                 </div>
               )}
               
@@ -215,7 +215,7 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
           </div>
 
           {/* Profile Fields */}
-          <div className="space-y-4 mb-6">
+          <div className="space-y-3 mb-4 flex-1 overflow-y-auto">
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Age</label>
@@ -296,7 +296,7 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
           )}
 
           {/* Settings Section */}
-          <div className="mb-6">
+          <div className="mb-4">
             <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">Settings</h3>
             <div className="space-y-2">
               <button
@@ -365,7 +365,7 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
           </div>
 
           {/* Bottom Buttons */}
-          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 mt-auto">
             <button
               onClick={handleShareApp}
               className="flex-1 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg flex items-center justify-center space-x-2 transition-colors"
@@ -376,7 +376,7 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
             
             <button
               onClick={handleLogout}
-              className="flex-1 border border-red-600 text-red-600 hover:bg-red-50 px-4 py-2 rounded-lg flex items-center justify-center space-x-2 transition-colors"
+              className="flex-1 border border-red-600 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 px-4 py-2 rounded-lg flex items-center justify-center space-x-2 transition-colors"
             >
               <LogOut className="h-4 w-4" />
               <span className="text-sm font-medium">Logout</span>
