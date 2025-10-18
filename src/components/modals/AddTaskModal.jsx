@@ -24,7 +24,12 @@ const AddTaskModal = ({ onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.title && formData.dueDate && formData.clientId) {
-      dispatch(addTask(formData));
+      // Convert clientId to number for proper storage
+      const taskData = {
+        ...formData,
+        clientId: parseInt(formData.clientId)
+      };
+      dispatch(addTask(taskData));
       onClose();
     }
   };

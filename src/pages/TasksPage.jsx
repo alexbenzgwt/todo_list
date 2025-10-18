@@ -256,7 +256,27 @@ const TasksPage = ({ filter = 'all' }) => {
   };
 
   const getClientName = (clientId) => {
-    const client = clients.find(c => c.id === clientId);
+    // Handle null/undefined clientId
+    if (!clientId) {
+      return 'No Client';
+    }
+    
+    // Convert clientId to number for proper comparison
+    const numericClientId = typeof clientId === 'string' ? parseInt(clientId) : clientId;
+    
+    // Check if clients array is loaded
+    if (!clients || clients.length === 0) {
+      console.log('Clients array is empty or not loaded');
+      return 'Loading...';
+    }
+    
+    const client = clients.find(c => c.id === numericClientId);
+    
+    // Debug logging to help identify issues
+    if (!client) {
+      console.log('Client not found for ID:', clientId, 'Numeric ID:', numericClientId, 'Available clients:', clients.map(c => ({ id: c.id, name: c.name })));
+    }
+    
     return client ? client.name : 'Unknown Client';
   };
 
