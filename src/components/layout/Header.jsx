@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Plus, Bell, CheckSquare, Menu } from 'lucide-react';
 import { logout } from '../../store/slices/authSlice';
-import UpdateProfile from '../../pages/UpdateProfile';
+
 
 const Header = ({ onAddTask, onAddClient, onToggleSidebar }) => {
   const { user } = useSelector((state) => state.auth);
@@ -46,7 +46,7 @@ const Header = ({ onAddTask, onAddClient, onToggleSidebar }) => {
             </button>
             
             <div className="relative group">
-              <button onClick={UpdateProfile} className="flex items-center space-x-2">
+              <button  className="flex items-center space-x-2">
                 <img
                   src={user?.avatar || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face'}
                   alt={user?.name}
