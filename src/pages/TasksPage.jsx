@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Search, Plus, Calendar, User, AlertCircle, CheckCircle } from 'lucide-react';
+import AddTaskModal from '../components/modals/AddTaskModal';
 
 const TasksPage = ({ filter = 'all' }) => {
   const { tasks } = useSelector((state) => state.tasks);
   const { clients } = useSelector((state) => state.clients);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
 
   const getFilteredTasks = () => {
     let filtered = tasks;
@@ -78,7 +80,10 @@ const TasksPage = ({ filter = 'all' }) => {
         <h1 className="text-xl sm:text-2xl font-bold text-gray-900 capitalize">
           {filter === 'all' ? 'All Tasks' : `${filter} Tasks`}
         </h1>
-        <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg flex items-center justify-center space-x-2 transition-colors w-full sm:w-auto">
+        <button 
+          onClick={() => setIsAddTaskModalOpen(true)}
+          className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg flex items-center justify-center space-x-2 transition-colors w-full sm:w-auto"
+        >
           <Plus className="h-4 w-4" />
           <span>Add Task</span>
         </button>
@@ -124,6 +129,11 @@ const TasksPage = ({ filter = 'all' }) => {
           </div>
         )}
       </div>
+
+      {/* Add Task Modal */}
+      {isAddTaskModalOpen && (
+        <AddTaskModal onClose={() => setIsAddTaskModalOpen(false)} />
+      )}
     </div>
   );
 };

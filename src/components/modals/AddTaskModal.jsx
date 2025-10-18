@@ -153,3 +153,4 @@ const AddTaskModal = ({ onClose }) => {
 };
 
 export default AddTaskModal;
+
