@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import MailIcon from "../assets/mailbox.png";
-import ChatIcon from "../assets/chat logo.png";
-import CallIcon from "../assets/calls logo.png";
-import InstaIcon from "../assets/Insta Logo.png";
-import FBIcon from "../assets/FB Logo.png";
-import PinterestIcon from "../assets/Pinterest Logo.png";
+import ChatIcon from "../assets/chatlogo.png";
+import CallIcon from "../assets/callslogo.png";
+import InstaIcon from "../assets/InstaLogo.png";
+import FBIcon from "../assets/FBLogo.png";
+import PinterestIcon from "../assets/PinterestLogo.png";
 import YouTubeIcon from "../assets/YouTubeLogo.png";
 import LinkedinIcon from "../assets/LinkdinLogo.png";
 import TwitterIcon from "../assets/TwitterLogo.png";

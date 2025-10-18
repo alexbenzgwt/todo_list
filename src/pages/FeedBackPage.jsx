@@ -33,7 +33,8 @@ const FeedbackPage = () => {
   const handleRating = (key, num) => {
     setRating((prev) => ({
       ...prev,
-      [key]: prev[key] === num ? num - 1 : num,
+      [key] : num,
+      // [key]: prev[key] === num ? num - 1 : num,
     }));
   };
 
