@@ -3,7 +3,7 @@ import MailIcon from "../assets/mailbox.png";
 import ChatIcon from "../assets/chatlogo.png";
 import CallIcon from "../assets/callslogo.png";
 import InstaIcon from "../assets/InstaLogo.png";
-import FBIcon from "../assets/FBLogo.png";
+import FBIcon from "../assets/FBlogo.png";
 import PinterestIcon from "../assets/PinterestLogo.png";
 import YouTubeIcon from "../assets/YouTubeLogo.png";
 import LinkedinIcon from "../assets/LinkdinLogo.png";
