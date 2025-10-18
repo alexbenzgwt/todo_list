@@ -212,8 +212,8 @@ const InvoicePreviewPage = () => {
             <div class="header">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
                 <div style="display: flex; align-items: center; gap: 16px;">
-                  <div style="width: 67.74px; height: 66.36px; background: #2563EB; border-radius: 11.06px; display: flex; align-items: center; justify-content: center;">
-                    <img src="../public/svg.png" alt="Company Logo" style="width: 20px; height: 27px;" />
+                  <div style="width: 68px; height: 66px; background: #2563EB; border-radius: 11.06px; display: flex; align-items: center; justify-content: center;">
+                    <img src="./public/svg.png" alt="Company Logo" style="width: 20px; height: 27px;" />
                   </div>
                   <div>
                     <h2 style="margin: 0; font-size: 24px; font-weight: bold; color: #111827;">TechCorp</h2>
