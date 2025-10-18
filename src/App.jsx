@@ -8,6 +8,7 @@ import DashboardPage from './pages/DashboardPage';
 import TasksPage from './pages/TasksPage';
 import ClientsPage from './pages/ClientsPage';
 import InvoicePage from './pages/InvoicePage';
+import InvoicePreviewPage from './pages/InvoicePreviewPage';
 import ReportsPage from './pages/ReportsPage';
 import HelpPage from './pages/HelpPage';
 import ForgotPass from './components/auth/ForgotPass';
@@ -92,6 +93,14 @@ function App() {
               <ProtectedRoute>
                 <Layout>
                   <InvoicePage />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/dashboard/invoice/preview" element={
+              <ProtectedRoute>
+                <Layout>
+                  <InvoicePreviewPage />
                 </Layout>
               </ProtectedRoute>
             } />

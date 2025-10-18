@@ -10,14 +10,16 @@ import ForgotPass from './ForgotPass';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const [show,setShow] = useState(false)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, error, isAuthenticated } = useSelector((state) => state.auth);
+  const { loading, error, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
 
   // Redirect if already authenticated
   // useEffect(() => {
@@ -31,6 +33,7 @@ const Login = () => {
       setShow(!show) 
   } 
 
+  // ✅ Handle input changes
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -38,26 +41,30 @@ const Login = () => {
     });
   };
 
+  // ✅ Handle login submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (loading) return; // Prevent multiple submissions
-    
+    if (loading) return;
+
     dispatch(loginStart());
 
-    // Dummy authentication logic
+    // Mock login delay
     setTimeout(() => {
-      if (formData.email === 'admin@example.com' && formData.password === 'password') {
+      if (
+        formData.email === "admin@example.com" &&
+        formData.password === "password"
+      ) {
         const user = {
           id: 1,
           name: 'Naresh',
           email: formData.email,
-          avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+          avatar:
+            "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
         };
         dispatch(loginSuccess(user));
-        navigate('/dashboard');
+        navigate("/dashboard");
       } else {
-        dispatch(loginFailure('Invalid email or password'));
+        dispatch(loginFailure("Invalid email or password"));
       }
     }, 1000);
   };
@@ -137,11 +144,12 @@ const Login = () => {
                 
               </div>
 
-            {error && (
-              <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
-                {error}
-              </div>
-            )}
+          {/* ✅ Error Message */}
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
+              {error}
+            </div>
+          )}
 
             <div>
               <button
