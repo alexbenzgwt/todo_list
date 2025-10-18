@@ -183,7 +183,7 @@ const FeedbackPage = () => {
             ].map(({ key, label }) => (
               <div key={key} className="border rounded-lg py-4 flex flex-col items-center">
                 <p className="font-medium mb-2 text-gray-700">{label}</p>
-                <div className="flex gap-8">
+                <div className="flex gap-5">
                   {[1, 2, 3, 4, 5].map((num) => (
                     <button
                       key={num}
