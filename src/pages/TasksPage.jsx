@@ -504,11 +504,11 @@ const TasksPage = ({ filter = 'all' }) => {
                       <div className="flex items-center justify-between">
                         <div className="flex-1 min-w-0">
                           <h3 className={`text-base font-medium truncate ${
-                            task.status === 'completed' ? 'line-through text-gray-500' : 'text-gray-900'
+                            task.status === 'completed' ? 'line-through text-gray-500 dark:text-gray-400' : 'text-gray-900 dark:text-white'
                           }`}>
                             {task.title}
                           </h3>
-                          <p className="text-sm text-gray-500 truncate">
+                          <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
                             {getClientName(task.clientId)}
                           </p>
                         </div>
@@ -522,7 +522,7 @@ const TasksPage = ({ filter = 'all' }) => {
                           {/* More Options Menu */}
                           <button
                             onClick={() => setShowDeleteConfirm(task.id)}
-                            className="p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded"
+                            className="p-1 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
                             title="More options"
                           >
                             <MoreVertical className="h-4 w-4" />
@@ -703,11 +703,11 @@ const CalendarView = ({
                     <div className="flex items-center justify-between">
                       <div className="flex-1 min-w-0">
                         <h3 className={`text-base font-medium truncate ${
-                          task.status === 'completed' ? 'line-through text-gray-500' : 'text-gray-900'
+                          task.status === 'completed' ? 'line-through text-gray-500 dark:text-gray-400' : 'text-gray-900 dark:text-white'
                         }`}>
                           {task.title}
                         </h3>
-                        <p className="text-sm text-gray-500 truncate">
+                        <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
                           {getClientName(task.clientId)}
                         </p>
                       </div>
@@ -721,7 +721,7 @@ const CalendarView = ({
                         {/* More Options Menu */}
                         <button
                           onClick={() => onDeleteTask(task.id)}
-                          className="p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded"
+                          className="p-1 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
                           title="More options"
                         >
                           <MoreVertical className="h-4 w-4" />
