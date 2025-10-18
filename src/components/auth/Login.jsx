@@ -96,11 +96,11 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-fit bg-white flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex flex-col items-center mb-4">
           <img
-            src="./src/assets/Truedoit Logo.png"
+            src="./src/assets/TruedoitLogo.png"
             alt="Truedoit Logo"
             className="w-64 h-20"
           />
@@ -219,7 +219,7 @@ const Login = () => {
               }`}
             >
               <img
-                src="./src/assets/Google Logo.png"
+                src="./src/assets/GoogleLogo.png"
                 alt="Google logo"
                 className="w-14 h-14"
               />
