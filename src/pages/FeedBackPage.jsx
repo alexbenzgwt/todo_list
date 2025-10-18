@@ -228,13 +228,13 @@ const FeedbackPage = () => {
         <div className="flex justify-end gap-4">
           <button
             onClick={handleReset}
-            className="border border-[#E04131] text-gray-700 font-medium py-2 px-6 rounded-lg hover:bg-gray-300 transition"
+            className="border border-[#E04131] text-gray-700 font-medium py-2 px-6 rounded-lg  transition"
           >
             Reset
           </button>
           <button
             type="button"
-            className="border border-[#E04131] text-gray-700 font-medium py-2 px-6 rounded-lg hover:bg-gray-300 transition"
+            className="border border-[#E04131] text-gray-700 font-medium py-2 px-6 rounded-lg  transition"
           >
             Save Draft
           </button>
