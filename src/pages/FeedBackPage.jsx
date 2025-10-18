@@ -113,7 +113,7 @@ const FeedbackPage = () => {
             <select
               value={priority}
               onChange={(e) => setPriority(e.target.value)}
-              className="px-4 py-2 font-medium text-gray-700 border rounded-md focus:outline-none focus:border-[#E04131]"
+              className="px-4 py-2 font-medium text-gray-700 rounded-md focus:outline-none focus:border-[#E04131]"
             >
               <option>Select Priority</option>
               <option>Low</option>
