@@ -71,7 +71,7 @@ const InvoicePreviewPage = () => {
             }
             .header { 
               padding: 32px; 
-              border-bottom: 2px solid #ef4444; 
+              border-bottom: 2px solid #E5E7EB; 
             }
             .company-info h2 { 
               font-size: 24px; 
@@ -88,7 +88,7 @@ const InvoicePreviewPage = () => {
               font-weight: bold; 
               color: #111827; 
               margin: 0 0 16px 0; 
-              border-bottom: 2px solid #ef4444; 
+              border-bottom: 2px solid #E5E7EB; 
               padding-bottom: 8px; 
             }
             .invoice-details { 
@@ -129,6 +129,7 @@ const InvoicePreviewPage = () => {
               font-weight: 600; 
               color: #111827; 
               border-bottom: 2px solid #e5e7eb; 
+              background: #F2F2F2;
             }
             td { 
               padding: 16px; 
@@ -209,18 +210,47 @@ const InvoicePreviewPage = () => {
         <body>
           <div class="invoice-container">
             <div class="header">
-              <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                <div class="company-info">
-                  <h2>TechCorp Business Solutions Pvt Ltd</h2>
-                  <p>123 Business Park, Tech City</p>
-                  <p>GST: 27AABCT1234C1Z5</p>
-                  <p>Mumbai, Maharashtra - 400001</p>
-                  <p>Phone: +91 98765 43210</p>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <div style="width: 67.74px; height: 66.36px; background: #2563EB; border-radius: 11.06px; display: flex; align-items: center; justify-content: center;">
+                    <img src="../public/svg.png" alt="Company Logo" style="width: 20px; height: 27px;" />
+                  </div>
+                  <div>
+                    <h2 style="margin: 0; font-size: 24px; font-weight: bold; color: #111827;">TechCorp</h2>
+                    <p style="margin: 0; font-size: 19.35px; color: #6b7280;">Business Solutions Pvt Ltd</p>
+                  </div>
                 </div>
-                <div class="invoice-details">
+                <div>
                   <div class="invoice-title">INVOICE</div>
-                  <p><strong>DATE:</strong> ${invoiceDetails.date || 'October 4, 2024'}</p>
-                  <p><strong>INVOICE NUMBER:</strong><br>${invoiceDetails.invoiceNo || 'INV-2024-001247'}</p>
+                </div>
+              </div>
+
+              <!-- Separation line -->
+              <div style="border-top: 1px solid #E5E7EB; margin: 24px 0;"></div>
+
+              <!-- Middle Section: Date on left, Invoice number in center, Address on right -->
+              <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <!-- Date Section (Left) -->
+                <div>
+                  <p style="margin: 0; font-size: 12px; font-weight: 500; color: #6b7280; text-transform: uppercase;">DATE</p>
+                  <p style="margin: 0; font-size: 18px; font-weight: bold; color: #111827;">${invoiceDetails.date || 'October 4, 2024'}</p>
+                </div>
+
+                <!-- Invoice Number Section (Center) -->
+                <div style="text-align: center;">
+                  <p style="margin: 0; font-size: 12px; font-weight: 500; color: #6b7280; text-transform: uppercase;">INVOICE NUMBER</p>
+                  <p style="margin: 0; font-size: 18px; font-weight: bold; color: #111827;">${invoiceDetails.invoiceNo || 'INV-2024-001247'}</p>
+                </div>
+
+                
+                <div style="text-align: right;">
+                  <p style="margin: 0 0 8px 0; font-weight: bold; color: #111827;">TechCorp Business Solutions Pvt Ltd</p>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <p style="margin: 0; color: #6b7280;">123 Business Park, Tech City</p>
+                    <p style="margin: 0; color: #6b7280;">GST: 27AABCT1234C1Z5</p>
+                    <p style="margin: 0; color: #6b7280;">Mumbai, Maharashtra - 400001</p>
+                    <p style="margin: 0; color: #6b7280;">Phone: +91 98765 43210</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -340,7 +370,7 @@ const InvoicePreviewPage = () => {
             }
             .header { 
               padding: 32px; 
-              border-bottom: 2px solid #ef4444; 
+              border-bottom: 2px solid #E5E7EB; 
             }
             .company-info h2 { 
               font-size: 24px; 
@@ -357,7 +387,7 @@ const InvoicePreviewPage = () => {
               font-weight: bold; 
               color: #111827; 
               margin: 0 0 16px 0; 
-              border-bottom: 2px solid #ef4444; 
+              border-bottom: 2px solid #E5E7EB; 
               padding-bottom: 8px; 
             }
             .invoice-details { 
@@ -398,6 +428,7 @@ const InvoicePreviewPage = () => {
               font-weight: 600; 
               color: #111827; 
               border-bottom: 2px solid #e5e7eb; 
+              background: #F2F2F2;
             }
             td { 
               padding: 16px; 
@@ -478,18 +509,48 @@ const InvoicePreviewPage = () => {
         <body>
           <div class="invoice-container">
             <div class="header">
-              <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                <div class="company-info">
-                  <h2>TechCorp Business Solutions Pvt Ltd</h2>
-                  <p>123 Business Park, Tech City</p>
-                  <p>GST: 27AABCT1234C1Z5</p>
-                  <p>Mumbai, Maharashtra - 400001</p>
-                  <p>Phone: +91 98765 43210</p>
+              <!-- Top Section: Logo + Company name on left, INVOICE title on right -->
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <div style="width: 67.74px; height: 66.36px; background: #2563EB; border-radius: 11.06px; display: flex; align-items: center; justify-content: center;">
+                    <img src="../public/svg.png" alt="Company Logo" style="width: 20px; height: 27px;" />
+                  </div>
+                  <div>
+                    <h2 style="margin: 0; font-size: 24px; font-weight: bold; color: #111827;">TechCorp</h2>
+                    <p style="margin: 0; font-size: 19.35px; color: #6b7280;">Business Solutions Pvt Ltd</p>
+                  </div>
                 </div>
-                <div class="invoice-details">
+                <div>
                   <div class="invoice-title">INVOICE</div>
-                  <p><strong>DATE:</strong> ${invoiceDetails.date || 'October 4, 2024'}</p>
-                  <p><strong>INVOICE NUMBER:</strong><br>${invoiceDetails.invoiceNo || 'INV-2024-001247'}</p>
+                </div>
+              </div>
+
+              <!-- Separation line -->
+              <div style="border-top: 1px solid #E5E7EB; margin: 24px 0;"></div>
+
+              <!-- Middle Section: Date on left, Invoice number in center, Address on right -->
+              <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <!-- Date Section (Left) -->
+                <div>
+                  <p style="margin: 0; font-size: 12px; font-weight: 500; color: #6b7280; text-transform: uppercase;">DATE</p>
+                  <p style="margin: 0; font-size: 18px; font-weight: bold; color: #111827;">${invoiceDetails.date || 'October 4, 2024'}</p>
+                </div>
+
+                <!-- Invoice Number Section (Center) -->
+                <div style="text-align: center;">
+                  <p style="margin: 0; font-size: 12px; font-weight: 500; color: #6b7280; text-transform: uppercase;">INVOICE NUMBER</p>
+                  <p style="margin: 0; font-size: 18px; font-weight: bold; color: #111827;">${invoiceDetails.invoiceNo || 'INV-2024-001247'}</p>
+                </div>
+
+                <!-- Address Section (Right) -->
+                <div style="text-align: right;">
+                  <p style="margin: 0 0 8px 0; font-weight: bold; color: #111827;">TechCorp Business Solutions Pvt Ltd</p>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <p style="margin: 0; color: #6b7280;">123 Business Park, Tech City</p>
+                    <p style="margin: 0; color: #6b7280;">GST: 27AABCT1234C1Z5</p>
+                    <p style="margin: 0; color: #6b7280;">Mumbai, Maharashtra - 400001</p>
+                    <p style="margin: 0; color: #6b7280;">Phone: +91 98765 43210</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -793,43 +854,52 @@ Email: support@techcorp.com
        {/* the entire Invoice Preview */}
        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
          {/* the entire Invoice Header */}
-         <div className="px-8 py-6 border-b-2 border-red-500">
+         <div className="px-8 py-6 border-b-2 border-gray-300">
+           {/* Top Section: Logo + Company name on left, INVOICE title on right */}
+           <div className="flex justify-between items-center mb-6">
+             <div className="flex items-center gap-4">
+               <div className="w-[67.74px] h-[66.36px] opacity-100 rounded-[11.06px] bg-[#2563EB] flex items-center justify-center">
+                 <img className="w-[20px] h-[27px] opacity-100" src="../public/svg.png" alt="Company Logo" />
+               </div>
+               <div>
+                 <h2 className="text-2xl font-bold text-gray-900 mb-2">TechCorp</h2>
+                 <p className="font-normal text-[19.35px] leading-[27.65px] text-gray-500">Business Solutions Pvt Ltd</p>
+               </div>
+             </div>
+             
+             <div>
+               <h3 className="text-4xl font-bold text-gray-900 border-b-2 border-gray-300 pb-2">INVOICE</h3>
+             </div>
+           </div>
+
+           {/* Separation line */}
+           <div className="border-t border-gray-300 my-6"></div>
+
+           {/* Middle Section: Date on left, Invoice number in center, Address on right */}
            <div className="flex justify-between items-start">
-             {/* about the company details */}
-             <div className="flex-1">
-               <div className="w-[67.74px] h-[66.36px] opacity-100 rounded-[11.06px] pt-[13.82px] pr-[23.5px] pb-[13.82px] pl-[23.5px] gap-[13.82px] bg-[#2563EB] flex items-center justify-center">
-                <img className="w-[20.74px] h-[27.65px] opacity-100 relative top-[4.84px]" src="../src/assets/svg.png" alt="" />
-                <div className="flex place-items-center gap-40">
-                  <img  src="../src/assets/svg.png" alt="" />
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">TechCorp 
-                 <p className=" font-normal text-[19.35px] leading-[27.65px] text-gray-500">Business Solutions Pvt Ltd</p>  </h2>
-                </div>
-               
-               </div>
-              {/* Invoice Info */}
-             <div className="text-right ">
-               <h3 className="text-4xl font-bold text-gray-900 mb-4 border-b-2 border-red-500 pb-2">INVOICE</h3>
+             {/* Date Section (Left) */}
+             <div>
+               <p className="text-sm font-medium text-gray-600 uppercase">DATE</p>
+               <p className="text-lg font-bold text-gray-900">{invoiceDetails.date || 'October 4, 2024'}</p>
+             </div>
+
+             {/* Invoice Number Section (Center) */}
+             <div className="text-center">
+               <p className="text-sm font-medium text-gray-600 uppercase">INVOICE NUMBER</p>
+               <p className="text-lg font-bold text-gray-900">{invoiceDetails.invoiceNo || 'INV-2024-001247'}</p>
+             </div>
+
+             {/* Address Section (Right) */}
+             <div className="text-right">
+               <p className="font-bold text-gray-900 mb-2">TechCorp Business Solutions Pvt Ltd</p>
+               <div className="space-y-1">
+                 <p className="text-gray-600">123 Business Park, Tech City</p>
+                 <p className="text-gray-600">GST: 27AABCT1234C1Z5</p>
+                 <p className="text-gray-600">Mumbai, Maharashtra - 400001</p>
+                 <p className="text-gray-600">Phone: +91 98765 43210</p>
                </div>
              </div>
-             
-             
-               
-             </div>
-             <div className="space-y-2 ">
-                <div class="flex place-items-center gap-90" > <p className="text-gray-600">
-                   <span className="font-medium text-centre">DATE:</span> {invoiceDetails.date || 'October 4, 2024'}
-                 </p>
-                 <p className="text-gray-600">
-                   <span className="font-medium text-centre">INVOICE NUMBER: <br /> </span> {invoiceDetails.invoiceNo || 'INV-2024-001247'}
-                 </p> </div>
-               <div className='text-right'>  
-                  <p className="text-gray-600">123 Business Park, Tech City</p>
-                  <p className="text-gray-600">GST: 27AABCT1234C1Z5</p>
-                  <p className="text-gray-600">Mumbai, Maharashtra - 400001</p>
-                  <p className="text-gray-600">Phone: +91 98765 43210</p>
-               </div>
-               </div>
-           
+           </div>
          </div>
 
          {/* Client Details */}
@@ -850,7 +920,7 @@ Email: support@techcorp.com
            <div className="overflow-x-auto">
              <table className="w-full">
                <thead>
-                 <tr className="border-b-2 border-gray-200">
+                 <tr className="border-b-2 border-gray-200 bg-[#F2F2F2]">
                    <th className="text-left py-3 px-4 font-semibold text-gray-900">Task / Item</th>
                    <th className="text-left py-3 px-4 font-semibold text-gray-900">Description</th>
                    <th className="text-center py-3 px-4 font-semibold text-gray-900">Quantity</th>
