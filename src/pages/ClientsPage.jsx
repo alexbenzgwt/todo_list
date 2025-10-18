@@ -310,7 +310,7 @@ const ClientsPage = () => {
                   <div className="space-y-2">
                     {/* Map through first 4 tasks for this client */}
                     {getClientTasks(client.id).slice(0, 4).map((task) => (
-                      <div key={task.id} className="flex items-center justify-between py-2 px-3 bg-gray-50 rounded-lg">
+                      <div key={task.id} className="flex items-center justify-between py-2 px-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                         <div className="flex items-center space-x-3">
                           {/* Task Status Toggle Button */}
                           <button
@@ -318,7 +318,7 @@ const ClientsPage = () => {
                               e.stopPropagation();
                               toggleTaskStatus(task.id);
                             }}
-                            className="text-gray-400 hover:text-green-600"
+                            className="text-gray-400 dark:text-gray-500 hover:text-green-600 dark:hover:text-green-400"
                           >
                             {/* Show checkmark if completed, empty square if active */}
                             {task.status === 'completed' ? (
@@ -330,11 +330,11 @@ const ClientsPage = () => {
                           {/* Task Details */}
                           <div>
                             {/* Task Title - strikethrough if completed */}
-                            <span className={`text-sm font-medium ${task.status === 'completed' ? 'line-through text-gray-500' : 'text-gray-900'}`}>
+                            <span className={`text-sm font-medium ${task.status === 'completed' ? 'line-through text-gray-500 dark:text-gray-400' : 'text-gray-900 dark:text-white'}`}>
                               {task.title}
                             </span>
                             {/* Due Date Display */}
-                            <div className="flex items-center text-xs text-gray-500 mt-1">
+                            <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 mt-1">
                               <Clock className="h-3 w-3 mr-1" />
                               <span>Due {new Date(task.dueDate).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: '2-digit' })}</span>
                             </div>
@@ -346,7 +346,7 @@ const ClientsPage = () => {
                             e.stopPropagation();
                             deleteTaskHandler(task.id);
                           }}
-                          className="text-gray-400 hover:text-gray-600"
+                          className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
                         >
                           ⋯
                         </button>
