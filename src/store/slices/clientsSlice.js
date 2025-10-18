@@ -1,7 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  clients: [
+// Load clients from localStorage or use default data
+const loadClientsFromStorage = () => {
+  try {
+    const stored = localStorage.getItem('clients');
+    if (stored) {
+      return JSON.parse(stored);
+    }
+  } catch (error) {
+    console.error('Error loading clients from localStorage:', error);
+  }
+  
+  // Default data if no localStorage
+  return [
     {
       id: 1,
       name: 'ABC Designs',
@@ -62,9 +73,22 @@ const initialState = {
       overdueTasks: 0,
       completedTasks: 9,
     },
-  ],
+  ];
+};
+
+const initialState = {
+  clients: loadClientsFromStorage(),
   loading: false,
   error: null,
+};
+
+// Helper function to save clients to localStorage
+const saveClientsToStorage = (clients) => {
+  try {
+    localStorage.setItem('clients', JSON.stringify(clients));
+  } catch (error) {
+    console.error('Error saving clients to localStorage:', error);
+  }
 };
 
 const clientsSlice = createSlice({
@@ -81,16 +105,19 @@ const clientsSlice = createSlice({
         completedTasks: 0,
       };
       state.clients.push(newClient);
+      saveClientsToStorage(state.clients);
     },
     updateClient: (state, action) => {
       const { id, updates } = action.payload;
       const clientIndex = state.clients.findIndex(client => client.id === id);
       if (clientIndex !== -1) {
         state.clients[clientIndex] = { ...state.clients[clientIndex], ...updates };
+        saveClientsToStorage(state.clients);
       }
     },
     deleteClient: (state, action) => {
       state.clients = state.clients.filter(client => client.id !== action.payload);
+      saveClientsToStorage(state.clients);
     },
     setLoading: (state, action) => {
       state.loading = action.payload;
