@@ -17,32 +17,30 @@ body {
 
 /* Fix for browser dark mode - ensure all text is visible */
 @media (prefers-color-scheme: dark) {
+  /* Only adjust contrast and visibility, keep original colors */
   body {
-    background-color: #111827 !important;
-    color: #f9fafb !important;
+    background-color: #111827;
   }
   
-  /* Force all text to be visible in browser dark mode */
-  * {
-    color: #f9fafb !important;
+  /* Make text more visible by adjusting opacity and contrast */
+  .text-black {
+    opacity: 0.9;
+    filter: contrast(1.2);
   }
   
-  /* Override any black text that might be invisible */
-  .text-black, .text-gray-900, .text-gray-800, .text-gray-700 {
-    color: #f9fafb !important;
+  .text-gray-900 {
+    opacity: 0.9;
+    filter: contrast(1.2);
   }
   
-  /* Ensure backgrounds are dark */
-  .bg-white {
-    background-color: #1f2937 !important;
+  .text-gray-800 {
+    opacity: 0.9;
+    filter: contrast(1.2);
   }
   
-  .bg-gray-50 {
-    background-color: #374151 !important;
-  }
-  
-  .bg-gray-100 {
-    background-color: #4b5563 !important;
+  .text-gray-700 {
+    opacity: 0.9;
+    filter: contrast(1.2);
   }
 }
 
@@ -437,130 +435,96 @@ body {
   background-color: #6b7280 !important;
 }
 
-/* Ultimate text visibility fix - catch any remaining invisible text */
+/* Simple text visibility fix for dark mode */
 .dark *:not(svg):not(path):not(circle):not(rect):not(line):not(polygon) {
-  color: #f9fafb !important;
+  filter: contrast(1.05);
 }
 
-/* Specific overrides for common text issues */
+/* Specific improvements for common text visibility issues */
 .dark .text-black {
-  color: #f9fafb !important;
+  filter: contrast(1.2);
+  opacity: 0.9;
 }
 
 .dark .text-gray-900 {
-  color: #f9fafb !important;
+  filter: contrast(1.2);
+  opacity: 0.9;
 }
 
 .dark .text-gray-800 {
-  color: #f3f4f6 !important;
+  filter: contrast(1.2);
+  opacity: 0.9;
 }
 
 .dark .text-gray-700 {
-  color: #e5e7eb !important;
+  filter: contrast(1.2);
+  opacity: 0.9;
 }
 
 .dark .text-gray-600 {
-  color: #d1d5db !important;
+  filter: contrast(1.1);
+  opacity: 0.9;
 }
 
 .dark .text-gray-500 {
-  color: #9ca3af !important;
+  filter: contrast(1.1);
+  opacity: 0.9;
 }
 
 .dark .text-gray-400 {
-  color: #9ca3af !important;
+  filter: contrast(1.1);
+  opacity: 0.9;
 }
 
 .dark .text-gray-300 {
-  color: #d1d5db !important;
+  filter: contrast(1.1);
+  opacity: 0.9;
 }
 
 .dark .text-gray-200 {
-  color: #e5e7eb !important;
+  filter: contrast(1.1);
+  opacity: 0.9;
 }
 
 .dark .text-gray-100 {
-  color: #f3f4f6 !important;
+  filter: contrast(1.1);
+  opacity: 0.9;
 }
 
-/* Force visibility for any text that might be using custom colors */
+/* Simple visibility improvement for text in dark mode */
 .dark [class*="text-"] {
-  color: #f9fafb !important;
+  filter: contrast(1.1);
 }
 
-/* Additional browser dark mode fixes */
+/* Simple browser dark mode fixes */
 @media (prefers-color-scheme: dark) {
-  /* Force all headings to be visible */
+  /* Improve text visibility with subtle adjustments */
   h1, h2, h3, h4, h5, h6 {
-    color: #f9fafb !important;
+    filter: contrast(1.1);
   }
   
-  /* Force all text elements to be visible */
-  p, span, div, label, button, a {
-    color: #f9fafb !important;
-  }
-  
-  /* Force all form elements to be visible */
+  /* Improve form element visibility */
   input, textarea, select {
-    color: #f9fafb !important;
-    background-color: #374151 !important;
+    filter: contrast(1.1);
   }
   
-  /* Override any specific text colors that might be invisible */
-  .text-black, .text-gray-900, .text-gray-800, .text-gray-700, .text-gray-600 {
-    color: #f9fafb !important;
-  }
-  
-  /* Ensure all white backgrounds are dark */
-  .bg-white, .bg-gray-50, .bg-gray-100 {
-    background-color: #1f2937 !important;
-  }
-  
-  /* Fix for any components that might have black text */
-  .font-bold, .font-semibold, .font-medium {
-    color: #f9fafb !important;
-  }
-  
-  /* Fix for navigation and menu items */
-  nav, nav *, .nav-link, .nav-item {
-    color: #f9fafb !important;
-  }
-  
-  /* Fix for buttons and interactive elements */
-  button, button *, .btn, .btn * {
-    color: #f9fafb !important;
+  /* Improve button visibility */
+  button, .btn {
+    filter: contrast(1.1);
   }
 }
 
-/* Ultimate fix for browser dark mode - works regardless of browser settings */
-@media (prefers-color-scheme: dark), (prefers-color-scheme: light) {
-  /* Force all text to be visible when browser is in dark mode */
+/* Simple browser dark mode compatibility */
+@media (prefers-color-scheme: dark) {
+  /* Improve overall visibility when browser is in dark mode */
   body.dark, body[data-theme="dark"], .dark {
-    background-color: #111827 !important;
-    color: #f9fafb !important;
+    background-color: #111827;
   }
   
-  /* Override any black or dark text that might be invisible */
+  /* Improve text visibility with subtle contrast adjustments */
   .text-black, .text-gray-900, .text-gray-800, .text-gray-700 {
-    color: #f9fafb !important;
-  }
-  
-  /* Force all elements to have visible text */
-  *:not(svg):not(path):not(circle):not(rect):not(line):not(polygon) {
-    color: #f9fafb !important;
-  }
-  
-  /* Ensure all backgrounds are dark */
-  .bg-white {
-    background-color: #1f2937 !important;
-  }
-  
-  .bg-gray-50 {
-    background-color: #374151 !important;
-  }
-  
-  .bg-gray-100 {
-    background-color: #4b5563 !important;
+    filter: contrast(1.2);
+    opacity: 0.9;
   }
 }
 
