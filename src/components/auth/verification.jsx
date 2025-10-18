@@ -1,200 +1,232 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-function Verification() {
-  const [otp, setOtp] = useState(["", "", "", ""]);
-  const [timer, setTimer] = useState(30); // countdown in seconds
-  const [isExpired, setIsExpired] = useState(false);
+const ONLY_DIGITS_REGEX = /\d/;
 
-  // Handle OTP input
-  const handleChange = (e, index) => {
-    const value = e.target.value.replace(/\D/, ""); // only digits
-    if (value) {
-      const newOtp = [...otp];
-      newOtp[index] = value;
-      setOtp(newOtp);
+const Verification = () => {
+    const navigate = useNavigate();
 
-      // Move to next input
-      if (index < 3) document.getElementById(`otp-${index + 1}`).focus();
-    }
-  };
+    const [otp, setOtp] = useState(['', '', '', '']);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [secondsLeft, setSecondsLeft] = useState(30);
 
-  const handleKeyDown = (e, index) => {
-    if (e.key === "Backspace" && !otp[index] && index > 0) {
-      document.getElementById(`otp-${index - 1}`).focus();
-    }
-  };
+    const inputRefs = useRef(Array.from({ length: 4 }, () => null));
 
-  // Countdown timer
-  useEffect(() => {
-    if (timer > 0) {
-      const countdown = setTimeout(() => setTimer(timer - 1), 1000);
-      return () => clearTimeout(countdown);
-    } else {
-      setIsExpired(true);
-    }
-  }, [timer]);
+    const otpValue = useMemo(() => otp.join(''), [otp]);
+    const isOtpComplete = useMemo(() => otp.every((d) => d.length === 1 && ONLY_DIGITS_REGEX.test(d)), [otp]);
+    const isExpired = secondsLeft <= 0;
 
-  // Format time (00:30)
-  const formatTime = (t) => {
-    const minutes = String(Math.floor(t / 60)).padStart(2, "0");
-    const seconds = String(t % 60).padStart(2, "0");
-    return `${minutes}:${seconds}`;
-  };
+    useEffect(() => {
+        // Auto-focus first input on mount
+        inputRefs.current[0]?.focus();
+    }, []);
 
-  // Verify OTP
-  const handleVerify = (e) => {
-    e.preventDefault();
-    if (isExpired) {
-      alert("OTP expired! Please resend a new one.");
-      return;
-    }
-    const otpValue = otp.join("");
-    if (otpValue.length === 4) {
-      alert("✅ OTP Verified Successfully!");
-    } else {
-      alert("Please enter all 4 digits.");
-    }
-  };
+    useEffect(() => {
+        if (secondsLeft <= 0) return;
+        const id = setInterval(() => {
+            setSecondsLeft((s) => (s > 0 ? s - 1 : 0));
+        }, 1000);
+        return () => clearInterval(id);
+    }, [secondsLeft]);
 
-  // Resend OTP
-  const handleResend = () => {
-    setOtp(["", "", "", ""]);
-    setTimer(30);
-    setIsExpired(false);
-    alert("🔁 New OTP sent to your email!");
-  };
+    const focusInput = (index) => {
+        inputRefs.current[index]?.focus();
+        inputRefs.current[index]?.select?.();
+    };
 
-  // Styles
-  const styles = {
-    container: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      height: "100vh",
-      backgroundColor: "#fff",
-      fontFamily: "Poppins, sans-serif",
-    },
-    logo: {
-      width: "180px",
-      marginBottom: "10px",
-    },
-    subtitle: {
-      color: "#555",
-      marginBottom: "40px",
-      fontSize: "16px",
-    },
-    formBox: {
-      backgroundColor: "#fff",
-      border: "1px solid #f5b9b9",
-      borderRadius: "12px",
-      padding: "40px",
-      textAlign: "center",
-      width: "400px",
-      boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
-    },
-    heading: {
-      fontSize: "28px",
-      fontWeight: "bold",
-      marginBottom: "10px",
-      color: "#222",
-    },
-    paragraph: {
-      color: "#555",
-      fontSize: "15px",
-      marginBottom: "25px",
-    },
-    otpContainer: {
-      display: "flex",
-      justifyContent: "center",
-      gap: "15px",
-      marginBottom: "20px",
-    },
-    otpInput: {
-      width: "50px",
-      height: "50px",
-      borderRadius: "8px",
-      border: "1.5px solid #ccc",
-      textAlign: "center",
-      fontSize: "20px",
-      outline: "none",
-      transition: "all 0.3s ease",
-    },
-    timerText: {
-      color: isExpired ? "red" : "#333",
-      fontSize: "14px",
-      marginBottom: "15px",
-    },
-    verifyButton: {
-      backgroundColor: isExpired ? "#ccc" : "#e74c3c",
-      color: "#fff",
-      border: "none",
-      borderRadius: "8px",
-      width: "100%",
-      padding: "15px",
-      fontSize: "18px",
-      cursor: isExpired ? "not-allowed" : "pointer",
-      transition: "background 0.3s ease",
-      marginBottom: "10px",
-    },
-    resendButton: {
-      background: "none",
-      border: "none",
-      color: "#e74c3c",
-      cursor: "pointer",
-      fontSize: "14px",
-      textDecoration: "underline",
-    },
-  };
+    const handleChange = (index, value) => {
+        if (value === '') {
+            setOtp((prev) => {
+                const next = [...prev];
+                next[index] = '';
+                return next;
+            });
+            return;
+        }
 
-  return (
-    <div style={styles.container}>
-      <img src="./src/assets/logo.png" alt="Logo" style={styles.logo} />
-      <p style={styles.subtitle}>Your freelance journey, made effortless</p>
+        const char = value.slice(-1); // last character typed
+        if (!ONLY_DIGITS_REGEX.test(char)) {
+            return; // ignore non-digits
+        }
 
-      <div style={styles.formBox}>
-        <h1 style={styles.heading}>Verification</h1>
-        <p style={styles.paragraph}>
-          Enter your 4-digit code that you received on your email
-        </p>
+        setOtp((prev) => {
+            const next = [...prev];
+            next[index] = char;
+            return next;
+        });
 
-        <div style={styles.otpContainer}>
-          {otp.map((num, i) => (
-            <input
-              key={i}
-              id={`otp-${i}`}
-              type="text"
-              maxLength="1"
-              value={num}
-              onChange={(e) => handleChange(e, i)}
-              onKeyDown={(e) => handleKeyDown(e, i)}
-              style={styles.otpInput}
-            />
-          ))}
+        if (index < inputRefs.current.length - 1) {
+            focusInput(index + 1);
+        }
+    };
+
+    const handleKeyDown = (index, e) => {
+        const key = e.key;
+
+        if (key === 'Backspace') {
+            if (otp[index]) {
+                // Clear current cell
+                setOtp((prev) => {
+                    const next = [...prev];
+                    next[index] = '';
+                    return next;
+                });
+            } else if (index > 0) {
+                focusInput(index - 1);
+                setOtp((prev) => {
+                    const next = [...prev];
+                    next[index - 1] = '';
+                    return next;
+                });
+            }
+            return;
+        }
+
+        if (key === 'ArrowLeft' && index > 0) {
+            e.preventDefault();
+            focusInput(index - 1);
+            return;
+        }
+
+        if (key === 'ArrowRight' && index < inputRefs.current.length - 1) {
+            e.preventDefault();
+            focusInput(index + 1);
+            return;
+        }
+    };
+
+    const handlePaste = (e) => {
+        e.preventDefault();
+        const pasted = e.clipboardData.getData('text').replace(/\D/g, '');
+        if (!pasted) return;
+
+        const next = ['','', '', ''];
+        for (let i = 0; i < Math.min(4, pasted.length); i += 1) {
+            next[i] = pasted[i];
+        }
+        setOtp(next);
+        if (pasted.length >= 4) {
+            inputRefs.current[3]?.blur();
+        } else {
+            focusInput(pasted.length);
+        }
+    };
+
+    const validateOtp = () => {
+        if (!isOtpComplete) {
+            return 'Please enter the 4-digit code.';
+        }
+        if (!/^\d{4}$/.test(otpValue)) {
+            return 'OTP must contain only digits.';
+        }
+        return '';
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (isSubmitting) return;
+
+        if (isExpired) {
+            setErrorMessage('The verification code has expired. Please resend the code.');
+            return;
+        }
+
+        const validationError = validateOtp();
+        if (validationError) {
+            setErrorMessage(validationError);
+            return;
+        }
+
+        setErrorMessage('');
+        setIsSubmitting(true);
+
+        // Simulate verification call
+        setTimeout(() => {
+            // Example: treat 1234 as success
+            if (otpValue === '1234') {
+                navigate('/login');
+            } else {
+                setErrorMessage('Invalid verification code.');
+            }
+            setIsSubmitting(false);
+        }, 800);
+    };
+
+    const handleResend = () => {
+        // Simulate resend: reset timer and clear inputs
+        setOtp(['', '', '', '']);
+        setErrorMessage('');
+        setSecondsLeft(30);
+        inputRefs.current[0]?.focus();
+    };
+
+    return (
+        <div className="min-h-screen bg-white flex flex-col justify-center py-12 sm:px-6 lg:px-8 -mt-9">
+            <div className="sm:mx-auto sm:w-full sm:max-w-max">
+                <div className="flex justify-center">
+                    <div className=" p-3 rounded-lg"> 
+                        <img src="./src/assets/Truedoit Logo.png" alt="" style={{width:"300px", height:"90px"}}/>
+                        <p className='text-gray-600'>Your freelance journey, made effortless</p>
+                    </div>
+                </div>
+                <div className='size-full mb-1 border-3 max-w-md border-[#F5C4BF] rounded-2xl bg-white shadow sm:rounded-3xl px-4 py-4'>
+                    <p className=" text-center text-2xl font-semibold text-[#444444] flex justify-items-start">
+                        Verification
+                    </p>
+                    <p className="mt-1  text-start text-medium text-[#444444] flex justify-items-start font-medium">
+                        Enter your 4 digits code that you received on your email
+                    </p>
+
+                    <form className="mt-10 sm:mx-auto sm:w-full sm:max-w-md" onSubmit={handleSubmit}>
+                        <div className='px-4 ml-12 flex items-center gap-5' onPaste={handlePaste}>
+                            {otp.map((digit, index) => (
+                                <input
+                                    key={index}
+                                    ref={(el) => (inputRefs.current[index] = el)}
+                                    type="text"
+                                    inputMode="numeric"
+                                    pattern="[0-9]*"
+                                    maxLength="1"
+                                    value={digit}
+                                    onChange={(e) => handleChange(index, e.target.value)}
+                                    onKeyDown={(e) => handleKeyDown(index, e)}
+                                    className={`w-12 h-12 text-center border border-[#D6D6D6] rounded-lg ${index !== 0 ? 'ml-2' : ''} ${isExpired ? 'opacity-60' : ''}`}
+                                    disabled={isExpired}
+                                    aria-label={`Digit ${index + 1}`}
+                                />
+                            ))}
+                        </div>
+
+                        <div className="mt-3 flex items-center justify-center" aria-live="polite">
+                            {!isExpired ? (
+                                <p className="text-sm text-[#F2451C] ">00:{String(secondsLeft).padStart(2, '0')}</p>
+                            ) : (
+                                <button type="button" onClick={handleResend} className="text-sm text-red-600 underline disabled:opacity-50" disabled={!isExpired}>
+                                Resend code
+                            </button>
+                            )}
+                            
+                        </div>
+
+                        {errorMessage && (
+                            <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm mt-4">
+                                {errorMessage}
+                            </div>
+                        )}
+
+                        <button
+                            type="submit"
+                            disabled={!isOtpComplete || isSubmitting || isExpired}
+                            className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-2xl font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer mt-5 items-center"
+                        >
+                            {isSubmitting ? 'Verifying...' : 'Verify'}
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
-
-        <div style={styles.timerText}>
-          {isExpired ? "OTP expired ⏰" : `Expires in ${formatTime(timer)}`}
-        </div>
-
-        <button
-          style={styles.verifyButton}
-          disabled={isExpired}
-          onClick={handleVerify}
-        >
-          Verify
-        </button>
-
-        <button
-          style={styles.resendButton}
-          onClick={handleResend}
-          disabled={!isExpired}
-        >
-          Resend OTP
-        </button>
-      </div>
-    </div>
-  );
+    )
 }
 
-export default Verification;
+export default Verification
