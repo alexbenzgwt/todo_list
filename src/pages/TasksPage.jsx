@@ -84,7 +84,7 @@ const TasksPage = ({ filter = 'all' }) => {
     } else {
       switch (filter) {
         case 'today':
-          filtered = tasks.filter(task => task.dueDate === today);
+      filtered = tasks.filter(task => task.dueDate === today);
           break;
         case 'upcoming':
           filtered = tasks.filter(task => 
@@ -93,7 +93,7 @@ const TasksPage = ({ filter = 'all' }) => {
           );
           break;
         case 'completed':
-          filtered = tasks.filter(task => task.status === 'completed');
+      filtered = tasks.filter(task => task.status === 'completed');
           break;
         case 'overdue':
           filtered = tasks.filter(task => 
@@ -256,7 +256,27 @@ const TasksPage = ({ filter = 'all' }) => {
   };
 
   const getClientName = (clientId) => {
-    const client = clients.find(c => c.id === clientId);
+    // Handle null/undefined clientId
+    if (!clientId) {
+      return 'No Client';
+    }
+    
+    // Convert clientId to number for proper comparison
+    const numericClientId = typeof clientId === 'string' ? parseInt(clientId) : clientId;
+    
+    // Check if clients array is loaded
+    if (!clients || clients.length === 0) {
+      console.log('Clients array is empty or not loaded');
+      return 'Loading...';
+    }
+    
+    const client = clients.find(c => c.id === numericClientId);
+    
+    // Debug logging to help identify issues
+    if (!client) {
+      console.log('Client not found for ID:', clientId, 'Numeric ID:', numericClientId, 'Available clients:', clients.map(c => ({ id: c.id, name: c.name })));
+    }
+    
     return client ? client.name : 'Unknown Client';
   };
 
@@ -380,7 +400,7 @@ const TasksPage = ({ filter = 'all' }) => {
                 <option value="overdue">Overdue</option>
                 <option value="upcoming">Upcoming</option>
               </select>
-            </div>
+      </div>
 
             {/* Client Filter */}
             <div>
@@ -409,7 +429,7 @@ const TasksPage = ({ filter = 'all' }) => {
         <div className="flex items-center space-x-3">
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
             {getFilterTitle()}
-          </h1>
+        </h1>
           {getFilterIcon()}
           <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-sm font-medium">
             {filteredTasks.length} tasks
@@ -424,7 +444,7 @@ const TasksPage = ({ filter = 'all' }) => {
                 onClick={() => setViewType('list')}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   viewType === 'list' 
-                    ? 'bg-white text-gray-900 shadow-sm' 
+                    ? 'bg-red-600 text-white shadow-sm' 
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
@@ -449,9 +469,9 @@ const TasksPage = ({ filter = 'all' }) => {
             onClick={() => setIsAddTaskModalOpen(true)}
             className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg flex items-center justify-center space-x-2 transition-colors w-full sm:w-auto"
           >
-            <Plus className="h-4 w-4" />
-            <span>Add Task</span>
-          </button>
+          <Plus className="h-4 w-4" />
+          <span>Add Task</span>
+        </button>
         )}
       </div>
 
@@ -473,17 +493,17 @@ const TasksPage = ({ filter = 'all' }) => {
           formatMonthYear={formatMonthYear}
         />
       ) : (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-          {filteredTasks.length === 0 ? (
-            <div className="p-6 sm:p-8 text-center text-gray-500">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+        {filteredTasks.length === 0 ? (
+          <div className="p-6 sm:p-8 text-center text-gray-500">
               <p className="text-sm sm:text-base flex items-center justify-center space-x-2">
                 No {filter === 'all' ? '' : filter} tasks found
                 {getFilterIcon()}
               </p>
-            </div>
-          ) : (
-            <div className="divide-y divide-gray-200">
-              {filteredTasks.map((task) => (
+          </div>
+        ) : (
+          <div className="divide-y divide-gray-200">
+            {filteredTasks.map((task) => (
                 <div key={task.id} className="p-4 hover:bg-gray-50 transition-colors">
                   <div className="flex items-center space-x-4">
                     {/* Checkbox */}
@@ -502,22 +522,24 @@ const TasksPage = ({ filter = 'all' }) => {
                     {/* Task Content */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
-                        <div className="flex-1 min-w-0">
+                  <div className="flex-1 min-w-0">
                           <h3 className={`text-base font-medium truncate ${
                             task.status === 'completed' ? 'line-through text-gray-500 dark:text-gray-400' : 'text-gray-900 dark:text-white'
                           }`}>
                             {task.title}
                           </h3>
-                          <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
+                          <p className={`text-sm truncate ${
+                            task.status === 'overdue' ? 'text-red-500' : 'text-gray-500'
+                          }`}>
                             {getClientName(task.clientId)}
                           </p>
-                        </div>
+                      </div>
                         
                         {/* Priority Tag */}
                         <div className="flex items-center space-x-2 ml-4">
                           <span className={`px-2 py-1 text-xs font-medium rounded-full ${getPriorityColor(task.priority)}`}>
-                            {task.priority}
-                          </span>
+                        {task.priority}
+                      </span>
                           
                           {/* More Options Menu */}
                           <button
@@ -696,7 +718,7 @@ const CalendarView = ({
                         accentColor: '#dc2626'
                       }}
                     />
-                  </div>
+                    </div>
                   
                   {/* Task Content */}
                   <div className="flex-1 min-w-0">

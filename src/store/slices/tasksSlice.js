@@ -12,42 +12,52 @@ const loadTasksFromStorage = () => {
   }
   
   // Default data if no localStorage
+  const today = new Date().toISOString().split('T')[0];
   return [
     {
       id: 1,
-      title: 'Complete project proposal',
-      description: 'Draft and finalize the project proposal for ABC Designs',
+      title: 'Send Invoice',
+      description: 'Send invoice to client for completed work',
       status: 'active',
-      dueDate: '2024-01-15',
+      dueDate: today,
       clientId: 1,
       priority: 'high',
     },
     {
       id: 2,
-      title: 'Review design mockups',
-      description: 'Review and provide feedback on the latest design mockups',
-      status: 'overdue',
-      dueDate: '2024-01-10',
+      title: 'Reply to client',
+      description: 'Respond to client inquiry about project status',
+      status: 'active',
+      dueDate: today,
+      clientId: 1,
+      priority: 'high',
+    },
+    {
+      id: 3,
+      title: 'Prepare Presentation',
+      description: 'Create presentation slides for client meeting',
+      status: 'active',
+      dueDate: today,
       clientId: 1,
       priority: 'medium',
     },
     {
-      id: 3,
-      title: 'Update website content',
-      description: 'Update the homepage content with new product information',
-      status: 'completed',
-      dueDate: '2024-01-12',
-      clientId: 2,
-      priority: 'low',
-    },
-    {
       id: 4,
-      title: 'Client meeting preparation',
-      description: 'Prepare presentation materials for upcoming client meeting',
-      status: 'upcoming',
-      dueDate: '2024-01-20',
+      title: 'Submit Logo',
+      description: 'Submit final logo design to client',
+      status: 'active',
+      dueDate: today,
       clientId: 1,
       priority: 'high',
+    },
+    {
+      id: 5,
+      title: 'Submit Logo',
+      description: 'Submit alternative logo design to client',
+      status: 'active',
+      dueDate: today,
+      clientId: 1,
+      priority: 'medium',
     },
   ];
 };
