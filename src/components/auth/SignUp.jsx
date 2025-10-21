@@ -60,7 +60,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col justify-center py-12 sm:px-6 lg:px-8 -mt-9">
+    <div className="min-h-lvh bg-white flex flex-col justify-center py-12 sm:px-6 lg:px-8 -mt-9">
       <div className="sm:mx-auto sm:w-full sm:max-w-max">
         <div className="flex justify-center">
           <div className=" p-3 rounded-lg"> 

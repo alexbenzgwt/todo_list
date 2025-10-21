@@ -1,71 +1,115 @@
-import { BarChart3, TrendingUp, Calendar, Users } from 'lucide-react';
+import React, { useState } from "react";
+import { Calendar, Search, MoreVertical, Download } from "lucide-react";
 
-const ReportsPage = () => {
+const Reports = () => {
+  const [startDate, setStartDate] = useState("2025-09-09");
+  const [endDate, setEndDate] = useState("2025-09-28");
+
+  const tasks = [
+    { id: 1, title: "Reply to client", company: "XYZ Designs", status: "pending", priority: "High" },
+    { id: 2, title: "Send Invoice", company: "XYZ Designs", status: "done", priority: "High" },
+    { id: 3, title: "Submit Logo", company: "XYZ Designs", status: "pending", priority: "High" },
+    { id: 4, title: "Send Invoice", company: "XYZ Designs", status: "pending", priority: "High" },
+  ];
+
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Reports</h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <div className="flex items-center">
-            <div className="p-3 rounded-lg bg-blue-100">
-              <BarChart3 className="h-6 w-6 text-blue-600" />
-            </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Task Completion</p>
-              <p className="text-2xl font-bold text-gray-900">85%</p>
-            </div>
-          </div>
+    <div className="min-h-screen bg-white p-6 text-gray-800">
+      {/* Header */}
+      <h2 className="text-xl font-semibold mb-4">Reports</h2>
+
+      {/* Search + Client */}
+      <div className="flex flex-wrap gap-3 items-center mb-5">
+        <div className="flex items-center w-full sm:w-1/2 bg-gray-100 rounded-lg px-3 py-2">
+          <Search className="text-gray-400 mr-2" size={18} />
+          <input
+            type="text"
+            placeholder="Search Users Here"
+            className="bg-transparent focus:outline-none w-full text-sm"
+          />
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <div className="flex items-center">
-            <div className="p-3 rounded-lg bg-green-100">
-              <TrendingUp className="h-6 w-6 text-green-600" />
-            </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Productivity</p>
-              <p className="text-2xl font-bold text-gray-900">+12%</p>
-            </div>
-          </div>
+        <select className="bg-gray-100 text-gray-700 text-sm rounded-lg px-3 py-2">
+          <option>Select Client</option>
+          <option>XYZ Designs</option>
+          <option>ABC Studio</option>
+        </select>
+      </div>
+
+      {/* Date Range */}
+      <div className="flex flex-wrap gap-3 mb-6">
+        <div className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-lg">
+          <input
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            className="bg-transparent focus:outline-none text-sm"
+          />
+          <Calendar size={18} className="text-gray-500" />
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <div className="flex items-center">
-            <div className="p-3 rounded-lg bg-purple-100">
-              <Calendar className="h-6 w-6 text-purple-600" />
-            </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">This Month</p>
-              <p className="text-2xl font-bold text-gray-900">24</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <div className="flex items-center">
-            <div className="p-3 rounded-lg bg-orange-100">
-              <Users className="h-6 w-6 text-orange-600" />
-            </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Active Clients</p>
-              <p className="text-2xl font-bold text-gray-900">6</p>
-            </div>
-          </div>
+        <div className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-lg">
+          <input
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            className="bg-transparent focus:outline-none text-sm"
+          />
+          <Calendar size={18} className="text-gray-500" />
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Performance Overview</h2>
-        <div className="h-64 flex items-center justify-center text-gray-500">
-          <div className="text-center">
-            <BarChart3 className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-            <p>Chart visualization would go here</p>
+      {/* Tasks */}
+      <h3 className="text-lg font-medium mb-3">Tasks</h3>
+      <div className="flex flex-col gap-3">
+        {tasks.map((task) => (
+          <div
+            key={task.id}
+            className="flex justify-between items-center bg-white border border-gray-200 shadow-sm rounded-lg px-4 py-3"
+          >
+            <div className="flex items-center gap-2">
+              {task.status === "done" ? (
+                <input type="checkbox" checked readOnly className="accent-green-500" />
+              ) : (
+                <input type="checkbox" className="accent-red-400" />
+              )}
+              <div>
+                <p
+                  className={`text-sm font-medium ${
+                    task.status === "done" ? "line-through text-gray-400" : "text-gray-800"
+                  }`}
+                >
+                  {task.title}
+                </p>
+                <p
+                  className={`text-xs ${
+                    task.status === "done" ? "text-green-500" : "text-yellow-500"
+                  }`}
+                >
+                  {task.company}
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="bg-red-100 text-red-500 text-xs font-semibold px-3 py-1 rounded-full">
+                {task.priority}
+              </span>
+              <MoreVertical size={16} className="text-gray-500" />
+            </div>
           </div>
-        </div>
+        ))}
+      </div>
+
+      {/* Export Buttons */}
+      <div className="flex justify-end gap-3 mt-6">
+        <button className="flex items-center gap-2 bg-red-100 text-red-500 text-sm font-medium px-4 py-2 rounded-lg hover:bg-red-200 transition">
+          <Download size={16} /> Export as CSV
+        </button>
+        <button className="flex items-center gap-2 bg-red-500 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-red-600 transition">
+          <Download size={16} /> Export as PDF
+        </button>
       </div>
     </div>
   );
 };
 
-export default ReportsPage;
+export default Reports;
