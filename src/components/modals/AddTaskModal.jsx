@@ -9,7 +9,8 @@ const AddTaskModal = ({ onClose }) => {
     description: '',
     dueDate: '',
     clientId: '',
-    priority: 'medium',
+    priority: 'high',
+    repeat: 'none',
   });
   const dispatch = useDispatch();
   const { clients } = useSelector((state) => state.clients);
@@ -23,7 +24,7 @@ const AddTaskModal = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.title && formData.dueDate && formData.clientId) {
+    if (formData.title && formData.dueDate && formData.clientId && formData.priority) {
       // Convert clientId to number for proper storage
       const taskData = {
         ...formData,
@@ -118,20 +119,62 @@ const AddTaskModal = ({ onClose }) => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 mb-3">
               Priority
             </label>
-            <div className="relative">
-              <AlertCircle className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-              <select
-                name="priority"
-                value={formData.priority}
-                onChange={handleChange}
-                className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+            <div className="flex justify-evenly space-x-2">
+              <button
+                type="button"
+                onClick={() => setFormData({...formData, priority: 'high'})}
+                className={`px-4 py-2 text-sm font-medium rounded-md border transition-colors ${
+                  formData.priority === 'high'
+                    ? 'bg-red-50 text-red-600 border-red-200'
+                    : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                }`}
               >
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
+                High
+              </button>
+              <button
+                type="button"
+                onClick={() => setFormData({...formData, priority: 'medium'})}
+                className={`px-4 py-2 text-sm font-medium rounded-md border transition-colors ${
+                  formData.priority === 'medium'
+                    ? 'bg-yellow-50 text-yellow-600 border-yellow-200'
+                    : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                Medium
+              </button>
+              <button
+                type="button"
+                onClick={() => setFormData({...formData, priority: 'low'})}
+                className={`px-4 py-2 text-sm font-medium rounded-md border transition-colors ${
+                  formData.priority === 'low'
+                    ? 'bg-green-50 text-green-600 border-green-200'
+                    : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                Low
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Repeat
+            </label>
+            <div className="relative">
+              <select
+                name="repeat"
+                value={formData.repeat}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+              >
+                <option value="none">None</option>
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
               </select>
             </div>
           </div>
@@ -148,7 +191,7 @@ const AddTaskModal = ({ onClose }) => {
               type="submit"
               className="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-md transition-colors"
             >
-              Add Task
+              Save Task
             </button>
           </div>
         </form>
