@@ -99,7 +99,7 @@ const AddTaskModal = ({ onClose }) => {
                 name="clientId"
                 value={formData.clientId}
                 onChange={handleChange}
-                className="w-full pl-10 pr-8 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 appearance-none bg-white dark:bg-gray-700"
+                className="w-full pl-10 pr-8 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 appearance-none bg-white"
                 required
                 style={{ 
                   backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`,
@@ -122,26 +122,25 @@ const AddTaskModal = ({ onClose }) => {
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Priority
             </label>
-            <div className="relative">
-              <AlertCircle className="absolute left-3 top-2.5 h-5 w-5 text-gray-400 dark:text-gray-500" />
-              <select
+              <div
                 name="priority"
                 value={formData.priority}
                 onChange={handleChange}
-                className="w-full pl-10 pr-8 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 appearance-none bg-white dark:bg-gray-700"
-                style={{ 
-                  backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`,
-                  backgroundPosition: 'right 8px center',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundSize: '16px'
-                }}
+                className="flex justify-between w-full py-2 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 appearance-none bg-white dark:bg-gray-700 cursor-pointer "
+                
               >
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-              </select>
+                <div className='w-25 h-8 border-2 text-center rounded-md border-[#D6D6D6] hover:bg-red-700'>
+                  <p>High</p>
+                </div>
+                <div className='w-25 h-8 border-2 text-center rounded-md border-[#D6D6D6] hover:bg-red-700'>
+                  <p>Medium</p>
+                </div>
+                <div className='w-25 h-8 border-2  text-center rounded-md border-[#D6D6D6] hover:bg-red-700'>
+                  <p>Low</p>
+                </div>
+
+              </div>
             </div>
-          </div>
 
           <div className="flex justify-end space-x-3 pt-4">
             <button

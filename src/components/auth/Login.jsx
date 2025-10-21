@@ -96,7 +96,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-lvh overflow-hidden bg-white flex  justify-center sm:mx-auto sm:h-md sm:w-full sm:px-6 lg:px-8">
+    <div className="min-h-lvh overflow-hidden bg-white flex  justify-center items-center sm:mx-auto sm:h-md sm:w-full sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex flex-col items-center mb-4">
           <img
