@@ -178,7 +178,7 @@ const InvoicePage = () => {
       </div> 
 
       {/* now taking Invoice Form - 2 Column Layout */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
        
           <div>
@@ -317,7 +317,7 @@ const InvoicePage = () => {
       </div>
 
       {/* here yo can enter the details of task about the description and quantity and rate and total of the bill  */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -410,7 +410,7 @@ const InvoicePage = () => {
       {/* Notes and Payment Details */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Notes Section */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Notes</h3>
           <textarea
             value={notes}
@@ -422,7 +422,7 @@ const InvoicePage = () => {
         </div>
 
         {/* Payment Details Section */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Payment Details</h3>
           <div className="space-y-4">
             <div>
@@ -492,11 +492,11 @@ const InvoicePage = () => {
       </div>
 
       {/* Bottom Summary Section */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
         <div className="flex justify-end">
           <div className="text-right space-y-2">
             <div className="flex justify-between items-center w-64">
-              <span className="text-gray-600">tax {taxRate}%</span>
+              <span className="text-gray-600 dark:text-gray-400">tax {taxRate}%</span>
               <span className="font-medium">{invoiceDetails.currency}{taxAmount.toLocaleString()}</span>
             </div>
             <div className="flex justify-between items-center w-64 text-lg font-bold">

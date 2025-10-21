@@ -212,8 +212,8 @@ const InvoicePreviewPage = () => {
             <div class="header">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
                 <div style="display: flex; align-items: center; gap: 16px;">
-                  <div style="width: 67.74px; height: 66.36px; background: #2563EB; border-radius: 11.06px; display: flex; align-items: center; justify-content: center;">
-                    <img src="../public/svg.png" alt="Company Logo" style="width: 20px; height: 27px;" />
+                  <div style="width: 68px; height: 66px; background: #2563EB; border-radius: 11.06px; display: flex; align-items: center; justify-content: center;">
+                    <img src="/svg.png" alt="Company Logo" style="width: 20px; height: 27px;" />
                   </div>
                   <div>
                     <h2 style="margin: 0; font-size: 24px; font-weight: bold; color: #111827;">TechCorp</h2>
@@ -370,7 +370,7 @@ const InvoicePreviewPage = () => {
             }
             .header { 
               padding: 32px; 
-              border-bottom: 2px solid #E5E7EB; 
+              border-bottom: 2px solid #e60e32ff; 
             }
             .company-info h2 { 
               font-size: 24px; 
@@ -513,7 +513,7 @@ const InvoicePreviewPage = () => {
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
                 <div style="display: flex; align-items: center; gap: 16px;">
                   <div style="width: 67.74px; height: 66.36px; background: #2563EB; border-radius: 11.06px; display: flex; align-items: center; justify-content: center;">
-                    <img src="../public/svg.png" alt="Company Logo" style="width: 20px; height: 27px;" />
+                    <img src="/svg.png" alt="Company Logo" style="width: 20px; height: 27px;" />
                   </div>
                   <div>
                     <h2 style="margin: 0; font-size: 24px; font-weight: bold; color: #111827;">TechCorp</h2>
@@ -859,7 +859,7 @@ Email: support@techcorp.com
            <div className="flex justify-between items-center mb-6">
              <div className="flex items-center gap-4">
                <div className="w-[67.74px] h-[66.36px] opacity-100 rounded-[11.06px] bg-[#2563EB] flex items-center justify-center">
-                 <img className="w-[20px] h-[27px] opacity-100" src="../public/svg.png" alt="Company Logo" />
+                 <img className="w-[20px] h-[27px] opacity-100" src="/svg.png" alt="Company Logo" />
                </div>
                <div>
                  <h2 className="text-2xl font-bold text-gray-900 mb-2">TechCorp</h2>
