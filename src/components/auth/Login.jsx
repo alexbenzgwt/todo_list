@@ -101,7 +101,7 @@ const Login = () => {
         <div className="flex flex-col items-center mb-4">
           <img
             src="./src/assets/TruedoitLogo.png"
-            alt="Truedoit Logo"
+            alt="TruedoitLogo"
             className="w-64 h-20"
           />
           <p className="text-gray-600 text-center">
@@ -207,7 +207,7 @@ const Login = () => {
             </button>
 
             <div className="flex items-center justify-center">
-              <img src="./src/assets/OR.png" alt="divider" />
+              <img src="../src/assets/OR.png" alt="divider" />
             </div>
 
             <div
@@ -219,7 +219,7 @@ const Login = () => {
               }`}
             >
               <img
-                src="./src/assets/GoogleLogo.png"
+                src="../src/assets/GoogleLogo.png"
                 alt="Google logo"
                 className="w-14 h-14"
               />
