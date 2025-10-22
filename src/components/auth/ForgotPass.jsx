@@ -1,14 +1,16 @@
 import { User } from 'lucide-react'
 import React, { useState } from 'react'
 import { loginFailure, loginStart, loginSuccess } from '../../store/slices/authSlice';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ForgotPass = () => {
-  const { loading, error, isAuthenticated } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const handleSubmit =() => {
-        e.preventdefault();
+    const handleSubmit = (e) => {
+        e.preventDefault();
         if (loading) return; // Prevent multiple submissions
             
             dispatch(loginStart());
@@ -47,7 +49,7 @@ const ForgotPass = () => {
         <div className="sm:mx-auto sm:w-full sm:max-w-max">
             <div className="flex justify-center">
                 <div className=" p-3 rounded-lg"> 
-                    <img src="./src/assets/Truedoit Logo.png" alt="" style={{width:"300px", height:"90px"}}/>
+                    <img src="./src/assets/TruedoitLogo.png" alt="" style={{width:"300px", height:"90px"}}/>
                     <p className='text-gray-600'>Your freelance journey, made effortless</p>
                 </div>
             </div>

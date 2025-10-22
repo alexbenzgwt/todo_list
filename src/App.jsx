@@ -136,6 +136,7 @@ function App() {
                 </Layout>
               </ProtectedRoute>
             } />
+
             
             {/* Default redirect */}
             <Route path="/" element={<Navigate to="/dashboard" replace />} />

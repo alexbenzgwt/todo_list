@@ -83,9 +83,9 @@ const ClientsPage = () => {
   };
 
   // Finds and returns the client object based on selected client ID
-  const getSelectedClient = () => {
-    return clients.find(client => client.id === selectedClientId);
-  };
+  // const getSelectedClient = () => {
+  //   return clients.find(client => client.id === selectedClientId);
+  // };
 
   // TASK MANAGEMENT FUNCTIONS
   // Toggles a task's status between 'completed' and 'active'
@@ -151,13 +151,13 @@ const ClientsPage = () => {
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
         {/* Search Input - allows users to search clients by name */}
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400 dark:text-gray-500" />
+          <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
           <input
             type="text"
             placeholder="Search Users Here"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+            className="w-full pl-10 pr-3 py-2 border border-gray-300    rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
           />
         </div>
         
@@ -166,7 +166,7 @@ const ClientsPage = () => {
           <select
             value={selectedClient}
             onChange={(e) => setSelectedClient(e.target.value)}
-            className="w-full sm:w-auto appearance-none bg-white dark:bg-gray-700 dark:text-white border border-gray-300 dark:border-gray-600 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+            className="w-full sm:w-auto appearance-none bg-white   border border-gray-300  rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
           >
             <option value="">Select Client</option>
             {clients.map((client) => (
@@ -179,8 +179,8 @@ const ClientsPage = () => {
         
         {/* Filter Icon - visual indicator for filter functionality */}
         <div className="flex flex-col items-center">
-          <Filter className="h-6 w-6 text-gray-400 dark:text-gray-500" />
-          <span className="text-xs text-gray-500 dark:text-gray-400 mt-1">Filter</span>
+          <Filter className="h-6 w-6 text-gray-400 " />
+          <span className="text-xs text-gray-500  mt-1">Filter</span>
         </div>
       </div>
 
@@ -188,7 +188,7 @@ const ClientsPage = () => {
       {/* Contains page title and "Add Client" button */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-3 sm:space-y-0">
         {/* Page Title */}
-        <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Clients</h1>
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-900 ">Clients</h1>
         {/* Add Client Button - opens the client creation modal */}
         <button onClick={openAddForm} className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg flex items-center justify-center space-x-2 transition-colors w-full sm:w-auto">
           <Plus className="h-4 w-4" />
@@ -245,23 +245,23 @@ const ClientsPage = () => {
 
       {/* CLIENTS LIST SECTION */}
       {/* Main container for displaying all clients */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
-        <div className="divide-y divide-gray-200 dark:divide-gray-700">
+      <div className="bg-white  rounded-lg shadow-sm border border-gray-200 ">
+        <div className="divide-y divide-gray-200 ">
           {/* Map through filtered clients to display each client */}
           {filteredClients.map((client) => (
-            <div key={client.id} className="p-4 sm:p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+            <div key={client.id} className="p-4 sm:p-6 hover:bg-gray-50  transition-colors">
               {/* Client Header - clickable to expand/collapse tasks */}
               <div className="flex items-center justify-between cursor-pointer" onClick={() => toggleClientTasks(client.id)}>
                 <div className="flex-1 min-w-0">
                   {/* Client Name */}
-                  <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white truncate">{client.name}</h3>
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900  truncate">{client.name}</h3>
                   {/* Task Status Indicators */}
                   <div className="flex items-center mt-1">
                     {/* Show overdue tasks warning if any exist */}
                     {client.overdueTasks > 0 ? (
                       <>
                         <AlertTriangle className="h-4 w-4 text-red-500 mr-2 flex-shrink-0" />
-                        <span className="text-xs sm:text-sm text-red-600 dark:text-red-400">
+                        <span className="text-xs sm:text-sm text-red-600 ">
                           {client.overdueTasks} Overdue Tasks
                         </span>
                       </>
@@ -269,7 +269,7 @@ const ClientsPage = () => {
                       /* Show active tasks count if no overdue tasks */
                       <>
                         <Clock className="h-4 w-4 text-yellow-500 mr-2 flex-shrink-0" />
-                        <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                        <span className="text-xs sm:text-sm text-gray-600 ">
                           {client.activeTasks} Active Tasks
                         </span>
                       </>
@@ -277,7 +277,7 @@ const ClientsPage = () => {
                   </div>
                 </div>
                 {/* Expand/Collapse Arrow - rotates when expanded */}
-                <ChevronRight className={`h-5 w-5 text-gray-400 dark:text-gray-500 flex-shrink-0 ml-2 transition-transform ${expandedClients[client.id] ? 'rotate-90' : ''}`} />
+                <ChevronRight className={`h-5 w-5 text-gray-400  flex-shrink-0 ml-2 transition-transform ${expandedClients[client.id] ? 'rotate-90' : ''}`} />
               </div>
 
               {/* EXPANDED TASKS SECTION */}
@@ -310,7 +310,7 @@ const ClientsPage = () => {
                   <div className="space-y-2">
                     {/* Map through first 4 tasks for this client */}
                     {getClientTasks(client.id).slice(0, 4).map((task) => (
-                      <div key={task.id} className="flex items-center justify-between py-2 px-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                      <div key={task.id} className="flex items-center justify-between py-2 px-3 bg-gray-50  rounded-lg">
                         <div className="flex items-center space-x-3">
                           {/* Task Status Toggle Button */}
                           <button
@@ -318,7 +318,7 @@ const ClientsPage = () => {
                               e.stopPropagation();
                               toggleTaskStatus(task.id);
                             }}
-                            className="text-gray-400 dark:text-gray-500 hover:text-green-600 dark:hover:text-green-400"
+                            className="text-gray-400  hover:text-green-600 "
                           >
                             {/* Show checkmark if completed, empty square if active */}
                             {task.status === 'completed' ? (
@@ -330,11 +330,11 @@ const ClientsPage = () => {
                           {/* Task Details */}
                           <div>
                             {/* Task Title - strikethrough if completed */}
-                            <span className={`text-sm font-medium ${task.status === 'completed' ? 'line-through text-gray-500 dark:text-gray-400' : 'text-gray-900 dark:text-white'}`}>
+                            <span className={`text-sm font-medium ${task.status === 'completed' ? 'line-through text-gray-500 ' : 'text-gray-900 '}`}>
                               {task.title}
                             </span>
                             {/* Due Date Display */}
-                            <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 mt-1">
+                            <div className="flex items-center text-xs text-gray-500  mt-1">
                               <Clock className="h-3 w-3 mr-1" />
                               <span>Due {new Date(task.dueDate).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: '2-digit' })}</span>
                             </div>
@@ -346,7 +346,7 @@ const ClientsPage = () => {
                             e.stopPropagation();
                             deleteTaskHandler(task.id);
                           }}
-                          className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
+                          className="text-gray-400  hover:text-gray-600 "
                         >
                           ⋯
                         </button>

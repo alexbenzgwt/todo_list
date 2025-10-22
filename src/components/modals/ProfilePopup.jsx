@@ -14,13 +14,11 @@ import {
   Upload,
   Image as ImageIcon
 } from 'lucide-react';
-import { useDarkMode } from '../../contexts/DarkModeContext';
 import PhotoViewer from './PhotoViewer';
 import ForgotPasswordModal from './ForgotPasswordModal';
 import DeleteAccountModal from './DeleteAccountModal';
 
 const ProfilePopup = ({ isOpen, onClose, user }) => {
-  const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [isEditMode, setIsEditMode] = useState(false);
   const [showPhotoViewer, setShowPhotoViewer] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
@@ -48,9 +46,6 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
     }));
   };
 
-  const handleDarkModeToggle = () => {
-    toggleDarkMode();
-  };
 
   const handleShareApp = () => {
     // Implement share functionality
@@ -121,7 +116,7 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
         console.log('Photo uploaded successfully:', file.name);
       };
       reader.readAsDataURL(file);
-    } catch (error) {
+    } catch {
       setUploadError('Failed to upload image. Please try again.');
       setIsUploading(false);
     }
@@ -143,13 +138,13 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
       
       {/* Profile Popup */}
       <div className="modal-container transform transition-all duration-300 ease-out animate-in slide-in-from-right-4 fade-in">
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 ring-1 ring-black/5 dark:ring-gray-600/20 p-4 sm:p-6 h-full flex flex-col">
+        <div className="bg-white  rounded-xl shadow-xl border border-gray-200  ring-1 ring-black/5  p-4 sm:p-6 h-full flex flex-col">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">My Profile</h2>
+            <h2 className="text-lg font-semibold text-gray-900 ">My Profile</h2>
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors"
+              className="text-gray-400 hover:text-gray-600   transition-colors"
             >
               <X className="h-5 w-5" />
             </button>
@@ -173,13 +168,13 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
               </button>
             </div>
             <div className="flex-1">
-              <h3 className="font-semibold text-gray-900 dark:text-white">{user?.name || 'Jai Chandra'}</h3>
-              <p className="text-sm text-red-600 dark:text-red-400">Joined: Jan 2025</p>
+              <h3 className="font-semibold text-gray-900 ">{user?.name || 'Jai Chandra'}</h3>
+              <p className="text-sm text-red-600 ">Joined: Jan 2025</p>
               
               {/* Upload Controls */}
               <div className="flex items-center space-x-2 mt-2">
                 <label className="cursor-pointer">
-                  <div className="flex items-center space-x-1 text-xs text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+                  <div className="flex items-center space-x-1 text-xs text-gray-600  hover:text-red-600  transition-colors">
                     <Upload className="h-3 w-3" />
                     <span>Upload Photo</span>
                     <input
@@ -191,10 +186,10 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
                     />
                   </div>
                 </label>
-                <span className="text-gray-300 dark:text-gray-500">|</span>
+                <span className="text-gray-300 ">|</span>
                 <button
                   onClick={handleRemovePhoto}
-                  className="text-xs text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+                  className="text-xs text-gray-600  hover:text-red-600  transition-colors"
                 >
                   Remove
                 </button>
@@ -204,12 +199,12 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
               {isUploading && (
                 <div className="flex items-center space-x-1 mt-1">
                   <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-red-600"></div>
-                  <span className="text-xs text-gray-600 dark:text-gray-300">Uploading...</span>
+                  <span className="text-xs text-gray-600 ">Uploading...</span>
                 </div>
               )}
               
               {uploadError && (
-                <p className="text-xs text-red-600 dark:text-red-400 mt-1">{uploadError}</p>
+                <p className="text-xs text-red-600  mt-1">{uploadError}</p>
               )}
             </div>
           </div>
@@ -218,57 +213,57 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
           <div className="space-y-3 mb-4 flex-1 overflow-y-auto">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Age</label>
+                <label className="block text-sm font-medium text-gray-700  mb-1">Age</label>
                 <input
                   type="text"
                   value={profileData.age}
                   onChange={(e) => handleInputChange('age', e.target.value)}
                   readOnly={!isEditMode}
-                  className={`w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm ${
-                    !isEditMode ? 'bg-gray-50 dark:bg-gray-800 cursor-not-allowed' : ''
+                  className={`w-full px-3 py-2 border border-gray-300    rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm ${
+                    !isEditMode ? 'bg-gray-50  cursor-not-allowed' : ''
                   }`}
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Gender</label>
+                <label className="block text-sm font-medium text-gray-700  mb-1">Gender</label>
                 <input
                   type="text"
                   value={profileData.gender}
                   onChange={(e) => handleInputChange('gender', e.target.value)}
                   readOnly={!isEditMode}
-                  className={`w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm ${
-                    !isEditMode ? 'bg-gray-50 dark:bg-gray-800 cursor-not-allowed' : ''
+                  className={`w-full px-3 py-2 border border-gray-300    rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm ${
+                    !isEditMode ? 'bg-gray-50  cursor-not-allowed' : ''
                   }`}
                 />
               </div>
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Mobile Number</label>
+              <label className="block text-sm font-medium text-gray-700  mb-1">Mobile Number</label>
               <input
                 type="text"
                 value={profileData.mobile}
                 onChange={(e) => handleInputChange('mobile', e.target.value)}
                 readOnly={!isEditMode}
-                className={`w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm ${
-                  !isEditMode ? 'bg-gray-50 dark:bg-gray-800 cursor-not-allowed' : ''
+                className={`w-full px-3 py-2 border border-gray-300    rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm ${
+                  !isEditMode ? 'bg-gray-50  cursor-not-allowed' : ''
                 }`}
               />
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Working as</label>
+              <label className="block text-sm font-medium text-gray-700  mb-1">Working as</label>
               <input
                 type="text"
                 value={profileData.workingAs}
                 onChange={(e) => handleInputChange('workingAs', e.target.value)}
                 readOnly={!isEditMode}
-                className={`w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm ${
-                  !isEditMode ? 'bg-gray-50 dark:bg-gray-800 cursor-not-allowed' : ''
+                className={`w-full px-3 py-2 border border-gray-300    rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm ${
+                  !isEditMode ? 'bg-gray-50  cursor-not-allowed' : ''
                 }`}
               />
-              <button className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 mt-1">
+              <button className="text-sm text-gray-500 hover:text-gray-700   mt-1">
                 + Add More
               </button>
             </div>
@@ -287,7 +282,7 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
               
               <button
                 onClick={handleCancelEdit}
-                className="flex-1 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 px-4 py-2 rounded-lg flex items-center justify-center space-x-2 transition-colors"
+                className="flex-1 border border-gray-300  text-gray-700  hover:bg-gray-50  px-4 py-2 rounded-lg flex items-center justify-center space-x-2 transition-colors"
               >
                 <XCircle className="h-4 w-4" />
                 <span className="text-sm font-medium">Cancel</span>
@@ -297,51 +292,36 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
 
           {/* Settings Section */}
           <div className="mb-4">
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">Settings</h3>
+            <h3 className="text-sm font-semibold text-gray-900  mb-3">Settings</h3>
             <div className="space-y-2">
               <button
                 onClick={handleChangePassword}
-                className="w-full flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md transition-colors"
+                className="w-full flex items-center justify-between p-2 hover:bg-gray-50  rounded-md transition-colors"
               >
                 <div className="flex items-center space-x-3">
-                  <Lock className="h-4 w-4 text-gray-600 dark:text-gray-400" />
-                  <span className="text-sm text-gray-700 dark:text-gray-300">Change Password</span>
+                  <Lock className="h-4 w-4 text-gray-600 " />
+                  <span className="text-sm text-gray-700 ">Change Password</span>
                 </div>
-                <span className="text-gray-400 dark:text-gray-500">›</span>
-              </button>
-              
-              <button
-                onClick={handleDarkModeToggle}
-                className="w-full flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md transition-colors"
-              >
-                <div className="flex items-center space-x-3">
-                  <Moon className="h-4 w-4 text-gray-600 dark:text-gray-400" />
-                  <span className="text-sm text-gray-700 dark:text-gray-300">Dark Mode</span>
-                </div>
-                <div className="flex items-center">
-                  <div className={`w-8 h-4 rounded-full transition-colors ${isDarkMode ? 'bg-red-600' : 'bg-gray-300 dark:bg-gray-600'}`}>
-                    <div className={`w-3 h-3 bg-white rounded-full transition-transform ${isDarkMode ? 'translate-x-4' : 'translate-x-0.5'} mt-0.5`} />
-                  </div>
-                </div>
+                <span className="text-gray-400 ">›</span>
               </button>
               
               <button
                 onClick={handleEditProfile}
-                className="w-full flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md transition-colors"
+                className="w-full flex items-center justify-between p-2 hover:bg-gray-50  rounded-md transition-colors"
               >
                 <div className="flex items-center space-x-3">
-                  <Edit className="h-4 w-4 text-gray-600 dark:text-gray-400" />
-                  <span className="text-sm text-gray-700 dark:text-gray-300">Edit Profile</span>
+                  <Edit className="h-4 w-4 text-gray-600 " />
+                  <span className="text-sm text-gray-700 ">Edit Profile</span>
                 </div>
-                <span className="text-gray-400 dark:text-gray-500">›</span>
+                <span className="text-gray-400 ">›</span>
               </button>
               
-              <label className="w-full flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md transition-colors cursor-pointer">
+              <label className="w-full flex items-center justify-between p-2 hover:bg-gray-50  rounded-md transition-colors cursor-pointer">
                 <div className="flex items-center space-x-3">
-                  <ImageIcon className="h-4 w-4 text-gray-600 dark:text-gray-400" />
-                  <span className="text-sm text-gray-700 dark:text-gray-300">Change Photo</span>
+                  <ImageIcon className="h-4 w-4 text-gray-600 " />
+                  <span className="text-sm text-gray-700 ">Change Photo</span>
                 </div>
-                <span className="text-gray-400 dark:text-gray-500">›</span>
+                <span className="text-gray-400 ">›</span>
                 <input
                   type="file"
                   accept="image/*"
@@ -353,13 +333,13 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
               
               <button
                 onClick={handleDeleteAccount}
-                className="w-full flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md transition-colors"
+                className="w-full flex items-center justify-between p-2 hover:bg-gray-50  rounded-md transition-colors"
               >
                 <div className="flex items-center space-x-3">
-                  <Trash2 className="h-4 w-4 text-gray-600 dark:text-gray-400" />
-                  <span className="text-sm text-gray-700 dark:text-gray-300">Delete Account</span>
+                  <Trash2 className="h-4 w-4 text-gray-600 " />
+                  <span className="text-sm text-gray-700 ">Delete Account</span>
                 </div>
-                <span className="text-gray-400 dark:text-gray-500">›</span>
+                <span className="text-gray-400 ">›</span>
               </button>
             </div>
           </div>
@@ -376,7 +356,7 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
             
             <button
               onClick={handleLogout}
-              className="flex-1 border border-red-600 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 px-4 py-2 rounded-lg flex items-center justify-center space-x-2 transition-colors"
+              className="flex-1 border border-red-600 text-red-600  hover:bg-red-50  px-4 py-2 rounded-lg flex items-center justify-center space-x-2 transition-colors"
             >
               <LogOut className="h-4 w-4" />
               <span className="text-sm font-medium">Logout</span>

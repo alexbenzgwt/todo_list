@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 export const getModalPosition = (preferredPosition = 'right') => {
   const viewportWidth = window.innerWidth;
-  const viewportHeight = window.innerHeight;
+  // const viewportHeight = window.innerHeight;
   
   // For very small screens (mobile)
   if (viewportWidth < 640) {

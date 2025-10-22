@@ -88,7 +88,7 @@ const Login = () => {
 
       dispatch(loginSuccess(googleUser));
       navigate("/dashboard");
-    } catch (err) {
+    } catch {
       dispatch(loginFailure("Google login failed"));
     } finally {
       setGoogleLoading(false);
@@ -96,7 +96,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-fit bg-white flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-lvh overflow-hidden bg-white flex  justify-center items-center sm:mx-auto sm:h-md sm:w-full sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex flex-col items-center mb-4">
           <img
@@ -212,7 +212,7 @@ const Login = () => {
 
             <div
               onClick={handleGoogleLogin}
-              className={`flex justify-center items-center gap-2 rounded-md py-2 cursor-pointer transition ${
+              className={`flex justify-center items-center gap-2 rounded-md -mt-5 -mb-3 cursor-pointer transition ${
                 googleLoading
                   ? "bg-gray-100 opacity-60 cursor-not-allowed"
                   : "hover:bg-gray-50"
@@ -223,13 +223,13 @@ const Login = () => {
                 alt="Google logo"
                 className="w-14 h-14"
               />
-              <p className="font-semibold text-gray-700">
+              <p className="font-semibold text-gray-700 text-xl">
                 {googleLoading ? "Connecting with Google..." : "Continue with Google"}
               </p>
             </div>
           </form>
           </div>
-          <div className="mt-4 text-center text-sm text-gray-700">
+          <div className="mt-4 text-center font-medium text-gray-700">
             Don’t have an account?{" "}
             <Link to="/signup" className="text-red-600 font-bold underline">
               Sign Up free
