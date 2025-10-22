@@ -70,7 +70,7 @@ function Forgot() {
 
   return (
     <div style={styles.container}>
-      <img src="./src/assets/logo.png" alt="truedoit logo" style={styles.logo} />
+      <img src="/Logo.png" alt="truedoit logo" style={styles.logo} />
       <p style={styles.tagline}>Your freelance journey, made effortless</p>
 
       <div style={styles.card}>

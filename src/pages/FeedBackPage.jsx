@@ -209,7 +209,7 @@ const FeedbackPage = () => {
             htmlFor="fileUpload"
             className="flex flex-col items-center justify-center border-gray-300 rounded-lg h-[129px] cursor-pointer hover:border-[#E04131] transition"
           >
-            <img src="../src/assets/Fileimg.png" alt="" />
+            <img src="/FileImg.png" alt="" />
             <p className="text-gray-500">
               Drop files here or{" "}
               <span className="text-[#E04131] font-medium">click to select</span>

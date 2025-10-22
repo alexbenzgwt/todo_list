@@ -57,8 +57,7 @@ const Login = () => {
           id: 1,
           name: "Naresh",
           email: formData.email,
-          avatar:
-            "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+          avatar: "/default-avatar.png",
         };
         dispatch(loginSuccess(user));
         navigate("/dashboard");
@@ -100,7 +99,7 @@ const Login = () => {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex flex-col items-center mb-4">
           <img
-            src="./src/assets/TruedoitLogo.png"
+            src="/TruedoitLogo.png"
             alt="TruedoitLogo"
             className="w-64 h-20"
           />
@@ -207,7 +206,7 @@ const Login = () => {
             </button>
 
             <div className="flex items-center justify-center">
-              <img src="../src/assets/OR.png" alt="divider" />
+              <img src="/OR.png" alt="divider" />
             </div>
 
             <div
@@ -219,7 +218,7 @@ const Login = () => {
               }`}
             >
               <img
-                src="../src/assets/GoogleLogo.png"
+                src="/GoogleLogo.png"
                 alt="Google logo"
                 className="w-14 h-14"
               />

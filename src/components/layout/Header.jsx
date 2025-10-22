@@ -46,7 +46,7 @@ const Header = ({ onAddTask, onToggleSidebar, onToggleProfile }) => {
                 className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
               >
                 <img
-                  src={user?.avatar || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face'}
+                  src={user?.avatar || '/default-avatar.png'}
                   alt={user?.name}
                   className="h-7 w-7 sm:h-8 sm:w-8 rounded-full object-cover"
                 />
