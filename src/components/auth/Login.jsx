@@ -88,7 +88,7 @@ const Login = () => {
 
       dispatch(loginSuccess(googleUser));
       navigate("/dashboard");
-    } catch (err) {
+    } catch {
       dispatch(loginFailure("Google login failed"));
     } finally {
       setGoogleLoading(false);

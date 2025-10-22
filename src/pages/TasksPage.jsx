@@ -29,9 +29,9 @@ const TasksPage = ({ filter = 'all' }) => {
   const { clients } = useSelector((state) => state.clients);
   const [searchTerm, setSearchTerm] = useState('');
   const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
-  const [editingTask, setEditingTask] = useState(null);
+  // const [editingTask, setEditingTask] = useState(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(null);
-  const [selectedTasks, setSelectedTasks] = useState(new Set());
+  // const [selectedTasks, setSelectedTasks] = useState(new Set());
   const [viewType, setViewType] = useState('list'); // 'list' or 'calendar'
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -132,13 +132,13 @@ const TasksPage = ({ filter = 'all' }) => {
   };
 
   // Task management functions
-  const handleCompleteTask = (taskId) => {
-    const task = tasks.find(t => t.id === taskId);
-    if (task) {
-      const newStatus = task.status === 'completed' ? 'active' : 'completed';
-      dispatch(updateTask({ id: taskId, updates: { status: newStatus } }));
-    }
-  };
+  // const handleCompleteTask = (taskId) => {
+  //   const task = tasks.find(t => t.id === taskId);
+  //   if (task) {
+  //     const newStatus = task.status === 'completed' ? 'active' : 'completed';
+  //     dispatch(updateTask({ id: taskId, updates: { status: newStatus } }));
+  //   }
+  // };
 
   const handleDeleteTask = (taskId) => {
     dispatch(deleteTask(taskId));
@@ -150,27 +150,27 @@ const TasksPage = ({ filter = 'all' }) => {
     dispatch(updateTask({ id: taskId, updates: { status: newStatus } }));
   };
 
-  const handleTaskStatusToggle = (taskId) => {
-    const task = tasks.find(t => t.id === taskId);
-    if (task) {
-      const newStatus = task.status === 'completed' ? 'active' : 'completed';
-      dispatch(updateTask({ id: taskId, updates: { status: newStatus } }));
-    }
-  };
+  // const handleTaskStatusToggle = (taskId) => {
+  //   const task = tasks.find(t => t.id === taskId);
+  //   if (task) {
+  //     const newStatus = task.status === 'completed' ? 'active' : 'completed';
+  //     dispatch(updateTask({ id: taskId, updates: { status: newStatus } }));
+  //   }
+  // };
 
-  const handleBulkComplete = () => {
-    selectedTasks.forEach(taskId => {
-      dispatch(updateTask({ id: taskId, updates: { status: 'completed' } }));
-    });
-    setSelectedTasks(new Set());
-  };
+  // const handleBulkComplete = () => {
+  //   selectedTasks.forEach(taskId => {
+  //     dispatch(updateTask({ id: taskId, updates: { status: 'completed' } }));
+  //   });
+  //   setSelectedTasks(new Set());
+  // };
 
-  const handleBulkDelete = () => {
-    selectedTasks.forEach(taskId => {
-      dispatch(deleteTask(taskId));
-    });
-    setSelectedTasks(new Set());
-  };
+  // const handleBulkDelete = () => {
+  //   selectedTasks.forEach(taskId => {
+  //     dispatch(deleteTask(taskId));
+  //   });
+  //   setSelectedTasks(new Set());
+  // };
 
   // Filter management functions
   const handleFilterChange = (filterType, value) => {
@@ -289,15 +289,15 @@ const TasksPage = ({ filter = 'all' }) => {
     }
   };
 
-  const getStatusIcon = (status) => {
-    switch (status) {
-      case 'completed': return <CheckCircle className="h-5 w-5 text-green-500" />;
-      case 'overdue': return <AlertCircle className="h-5 w-5 text-red-500" />;
-      case 'active': return <Clock className="h-5 w-5 text-orange-500" />;
-      case 'upcoming': return <Clock className="h-5 w-5 text-orange-500" />;
-      default: return <List className="h-5 w-5 text-gray-500" />;
-    }
-  };
+  // const getStatusIcon = (status) => {
+  //   switch (status) {
+  //     case 'completed': return <CheckCircle className="h-5 w-5 text-green-500" />;
+  //     case 'overdue': return <AlertCircle className="h-5 w-5 text-red-500" />;
+  //     case 'active': return <Clock className="h-5 w-5 text-orange-500" />;
+  //     case 'upcoming': return <Clock className="h-5 w-5 text-orange-500" />;
+  //     default: return <List className="h-5 w-5 text-gray-500" />;
+  //   }
+  // };
 
   const getFilterIcon = () => {
     switch (filter) {
@@ -334,7 +334,7 @@ const TasksPage = ({ filter = 'all' }) => {
             placeholder="Search Users Here"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+            className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-white text-gray-900 placeholder-gray-500"
           />
         </div>
         <div className="flex items-center space-x-2">
@@ -357,10 +357,10 @@ const TasksPage = ({ filter = 'all' }) => {
       {showFilters && (
         <div className="filter-panel bg-white rounded-lg shadow-sm border border-gray-200 p-4">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900">Filters</h3>
+            <h3 className="text-lg font-semibold text-gray-900 ">Filters</h3>
             <button
               onClick={clearAllFilters}
-              className="text-sm text-red-600 hover:text-red-700 font-medium"
+              className="text-sm text-red-600  hover:text-red-700  font-medium"
             >
               Clear All
             </button>
@@ -369,13 +369,13 @@ const TasksPage = ({ filter = 'all' }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Priority Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700  mb-2">
                 Priority
               </label>
               <select
                 value={filters.priority}
                 onChange={(e) => handleFilterChange('priority', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                className="w-full px-3 py-2 border border-gray-300  rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-white  text-gray-900 "
               >
                 <option value="all">All Priorities</option>
                 <option value="high">High</option>
@@ -386,13 +386,13 @@ const TasksPage = ({ filter = 'all' }) => {
 
             {/* Status Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700  mb-2">
                 Status
               </label>
               <select
                 value={filters.status}
                 onChange={(e) => handleFilterChange('status', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                className="w-full px-3 py-2 border border-gray-300  rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-white  text-gray-900 "
               >
                 <option value="all">All Status</option>
                 <option value="active">Active</option>
@@ -404,13 +404,13 @@ const TasksPage = ({ filter = 'all' }) => {
 
             {/* Client Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700  mb-2">
                 Client
               </label>
               <select
                 value={filters.client}
                 onChange={(e) => handleFilterChange('client', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                className="w-full px-3 py-2 border border-gray-300  rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-white  text-gray-900 "
               >
                 <option value="all">All Clients</option>
                 {clients.map((client) => (
@@ -427,11 +427,11 @@ const TasksPage = ({ filter = 'all' }) => {
       {/* Header Section */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-3 sm:space-y-0">
         <div className="flex items-center space-x-3">
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 ">
             {getFilterTitle()}
         </h1>
           {getFilterIcon()}
-          <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-sm font-medium">
+          <span className="bg-gray-100  text-gray-600  px-2 py-1 rounded-full text-sm font-medium">
             {filteredTasks.length} tasks
           </span>
         </div>
@@ -439,13 +439,13 @@ const TasksPage = ({ filter = 'all' }) => {
         {/* View Toggle - Only show for All Tasks, Add Task button for other views */}
         {filter === 'all' ? (
           <div className="flex items-center space-x-2">
-            <div className="flex bg-gray-100 rounded-lg p-1">
+            <div className="flex bg-gray-100  rounded-lg p-1">
               <button
                 onClick={() => setViewType('list')}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   viewType === 'list' 
                     ? 'bg-red-600 text-white shadow-sm' 
-                    : 'text-gray-600 hover:text-gray-900'
+                    : 'text-gray-600  hover:text-gray-900 '
                 }`}
               >
                 <List className="h-4 w-4" />
@@ -456,7 +456,7 @@ const TasksPage = ({ filter = 'all' }) => {
                 className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   viewType === 'calendar' 
                     ? 'bg-red-600 text-white shadow-sm' 
-                    : 'text-gray-600 hover:text-gray-900'
+                    : 'text-gray-600  hover:text-gray-900 '
                 }`}
               >
                 <Calendar className="h-4 w-4" />
@@ -478,11 +478,11 @@ const TasksPage = ({ filter = 'all' }) => {
       {/* Tasks List or Calendar View */}
       {filter === 'all' && viewType === 'calendar' ? (
         <CalendarView 
+          tasks={tasks}
           currentMonth={currentMonth}
           selectedDate={selectedDate}
           onDateSelect={setSelectedDate}
           onMonthChange={navigateMonth}
-          tasks={tasks}
           filteredTasks={filteredTasks}
           onCheckboxChange={handleCheckboxChange}
           onDeleteTask={setShowDeleteConfirm}
@@ -493,18 +493,18 @@ const TasksPage = ({ filter = 'all' }) => {
           formatMonthYear={formatMonthYear}
         />
       ) : (
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+      <div className="bg-white  rounded-lg shadow-sm border border-gray-200 ">
         {filteredTasks.length === 0 ? (
-          <div className="p-6 sm:p-8 text-center text-gray-500">
+          <div className="p-6 sm:p-8 text-center text-gray-500 ">
               <p className="text-sm sm:text-base flex items-center justify-center space-x-2">
                 No {filter === 'all' ? '' : filter} tasks found
                 {getFilterIcon()}
               </p>
           </div>
         ) : (
-          <div className="divide-y divide-gray-200">
+          <div className="divide-y divide-gray-200 ">
             {filteredTasks.map((task) => (
-                <div key={task.id} className="p-4 hover:bg-gray-50 transition-colors">
+                <div key={task.id} className="p-4 hover:bg-gray-50  transition-colors">
                   <div className="flex items-center space-x-4">
                     {/* Checkbox */}
                     <div className="flex-shrink-0">
@@ -512,7 +512,7 @@ const TasksPage = ({ filter = 'all' }) => {
                         type="checkbox"
                         checked={task.status === 'completed'}
                         onChange={(e) => handleCheckboxChange(task.id, e.target.checked)}
-                        className="h-5 w-5 text-red-600 border-gray-300 rounded focus:ring-red-500 accent-red-600"
+                        className="h-5 w-5 text-red-600 border-gray-300  rounded focus:ring-red-500 accent-red-600"
                         style={{
                           accentColor: '#dc2626'
                         }}
@@ -524,12 +524,12 @@ const TasksPage = ({ filter = 'all' }) => {
                       <div className="flex items-center justify-between">
                   <div className="flex-1 min-w-0">
                           <h3 className={`text-base font-medium truncate ${
-                            task.status === 'completed' ? 'line-through text-gray-500 dark:text-gray-400' : 'text-gray-900 dark:text-white'
+                            task.status === 'completed' ? 'line-through text-gray-500 ' : 'text-gray-900 '
                           }`}>
                             {task.title}
                           </h3>
                           <p className={`text-sm truncate ${
-                            task.status === 'overdue' ? 'text-red-500' : 'text-gray-500'
+                            task.status === 'overdue' ? 'text-red-500 ' : 'text-gray-500 '
                           }`}>
                             {getClientName(task.clientId)}
                           </p>
@@ -544,7 +544,7 @@ const TasksPage = ({ filter = 'all' }) => {
                           {/* More Options Menu */}
                           <button
                             onClick={() => setShowDeleteConfirm(task.id)}
-                            className="p-1 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
+                            className="p-1 text-gray-400  hover:text-gray-600  hover:bg-gray-100  rounded"
                             title="More options"
                           >
                             <MoreVertical className="h-4 w-4" />
@@ -568,23 +568,23 @@ const TasksPage = ({ filter = 'all' }) => {
       {/* Delete Confirmation Modal */}
       {showDeleteConfirm && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+          <div className="bg-white  rounded-lg p-6 w-full max-w-md">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="p-2 bg-red-100 rounded-full">
-                <Trash2 className="h-6 w-6 text-red-600" />
+              <div className="p-2 bg-red-100  rounded-full">
+                <Trash2 className="h-6 w-6 text-red-600 " />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900">Delete Task</h3>
-                <p className="text-sm text-gray-500">This action cannot be undone</p>
+                <h3 className="text-lg font-semibold text-gray-900 ">Delete Task</h3>
+                <p className="text-sm text-gray-500 ">This action cannot be undone</p>
               </div>
             </div>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600  mb-6">
               Are you sure you want to delete this task? This action cannot be undone.
             </p>
             <div className="flex justify-end space-x-3">
               <button
                 onClick={() => setShowDeleteConfirm(null)}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
+                className="px-4 py-2 text-sm font-medium text-gray-700  bg-gray-100  hover:bg-gray-200  rounded-md transition-colors"
               >
                 Cancel
               </button>
@@ -608,7 +608,6 @@ const CalendarView = ({
   selectedDate,
   onDateSelect,
   onMonthChange,
-  tasks,
   filteredTasks,
   onCheckboxChange,
   onDeleteTask,
@@ -630,30 +629,30 @@ const CalendarView = ({
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Calendar Widget */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+      <div className="bg-white  rounded-lg shadow-sm border border-gray-200  p-6">
         {/* Month Navigation */}
         <div className="flex items-center justify-between mb-6">
           <button
             onClick={() => onMonthChange(-1)}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-gray-100  rounded-lg transition-colors"
           >
-            <ChevronLeft className="h-5 w-5 text-gray-600" />
+            <ChevronLeft className="h-5 w-5 text-gray-600 " />
           </button>
-          <h2 className="text-lg font-semibold text-gray-900">
+          <h2 className="text-lg font-semibold text-gray-900 ">
             {formatMonthYear(currentMonth)}
           </h2>
           <button
             onClick={() => onMonthChange(1)}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-gray-100  rounded-lg transition-colors"
           >
-            <ChevronRight className="h-5 w-5 text-gray-600" />
+            <ChevronRight className="h-5 w-5 text-gray-600 " />
           </button>
         </div>
 
         {/* Days of Week */}
         <div className="grid grid-cols-7 gap-1 mb-2">
           {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-            <div key={day} className="text-center text-sm font-medium text-gray-500 py-2">
+            <div key={day} className="text-center text-sm font-medium text-gray-500  py-2">
               {day}
             </div>
           ))}
@@ -671,8 +670,8 @@ const CalendarView = ({
                   : isSelected(date)
                   ? 'bg-red-600 text-white'
                   : isToday(date)
-                  ? 'bg-red-100 text-red-600 font-semibold'
-                  : 'hover:bg-gray-100 text-gray-900'
+                  ? 'bg-red-100  text-red-600  font-semibold'
+                  : 'hover:bg-gray-100  text-gray-900 '
               }`}
             >
               {date && date.getDate()}
@@ -685,9 +684,9 @@ const CalendarView = ({
       </div>
 
       {/* Tasks for Selected Date */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-        <div className="p-4 border-b border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900">
+      <div className="bg-white  rounded-lg shadow-sm border border-gray-200 ">
+        <div className="p-4 border-b border-gray-200 ">
+          <h3 className="text-lg font-semibold text-gray-900 ">
             {selectedDate.toLocaleDateString('en-US', { 
               weekday: 'long', 
               year: 'numeric', 
@@ -698,14 +697,14 @@ const CalendarView = ({
         </div>
         
         {filteredTasks.length === 0 ? (
-          <div className="p-6 text-center text-gray-500">
-            <Calendar className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+          <div className="p-6 text-center text-gray-500 ">
+            <Calendar className="h-12 w-12 mx-auto mb-4 text-gray-300 " />
             <p className="text-sm">No tasks for this date</p>
           </div>
         ) : (
-          <div className="divide-y divide-gray-200">
+          <div className="divide-y divide-gray-200 ">
             {filteredTasks.map((task) => (
-              <div key={task.id} className="p-4 hover:bg-gray-50 transition-colors">
+              <div key={task.id} className="p-4 hover:bg-gray-50  transition-colors">
                 <div className="flex items-center space-x-4">
                   {/* Checkbox */}
                   <div className="flex-shrink-0">
@@ -713,7 +712,7 @@ const CalendarView = ({
                       type="checkbox"
                       checked={task.status === 'completed'}
                       onChange={(e) => onCheckboxChange(task.id, e.target.checked)}
-                      className="h-5 w-5 text-red-600 border-gray-300 rounded focus:ring-red-500 accent-red-600"
+                      className="h-5 w-5 text-red-600 border-gray-300  rounded focus:ring-red-500 accent-red-600"
                       style={{
                         accentColor: '#dc2626'
                       }}
@@ -725,11 +724,11 @@ const CalendarView = ({
                     <div className="flex items-center justify-between">
                       <div className="flex-1 min-w-0">
                         <h3 className={`text-base font-medium truncate ${
-                          task.status === 'completed' ? 'line-through text-gray-500 dark:text-gray-400' : 'text-gray-900 dark:text-white'
+                          task.status === 'completed' ? 'line-through text-gray-500 ' : 'text-gray-900 '
                         }`}>
                           {task.title}
                         </h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
+                        <p className="text-sm text-gray-500  truncate">
                           {getClientName(task.clientId)}
                         </p>
                       </div>
@@ -743,7 +742,7 @@ const CalendarView = ({
                         {/* More Options Menu */}
                         <button
                           onClick={() => onDeleteTask(task.id)}
-                          className="p-1 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
+                          className="p-1 text-gray-400  hover:text-gray-600  hover:bg-gray-100  rounded"
                           title="More options"
                         >
                           <MoreVertical className="h-4 w-4" />

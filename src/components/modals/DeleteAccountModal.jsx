@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { X, AlertTriangle, Trash2, CheckCircle, ArrowLeft } from 'lucide-react';
 
-const DeleteAccountModal = ({ isOpen, onClose, userName }) => {
+const DeleteAccountModal = ({ isOpen, onClose }) => {
   const [step, setStep] = useState(1); // 1: Warning, 2: Confirmation, 3: Final Confirmation
   const [confirmationText, setConfirmationText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -64,27 +64,27 @@ const DeleteAccountModal = ({ isOpen, onClose, userName }) => {
       >
         {/* Modal Content */}
         <div 
-          className="bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 w-full max-w-md max-h-[95vh] overflow-y-auto"
+          className="bg-white  rounded-xl shadow-xl border border-gray-200  w-full max-w-md max-h-[95vh] overflow-y-auto"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between p-6 border-b border-gray-200 ">
             <div className="flex items-center space-x-3">
               {step > 1 && (
                 <button
                   onClick={handleBack}
-                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                  className="p-2 hover:bg-gray-100  rounded-lg transition-colors"
                 >
-                  <ArrowLeft className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                  <ArrowLeft className="h-5 w-5 text-gray-600 " />
                 </button>
               )}
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <h2 className="text-lg font-semibold text-gray-900 ">
                 {isDeleted ? 'Account Deleted' : 'Delete Account'}
               </h2>
             </div>
             <button
               onClick={handleClose}
-              className="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors"
+              className="text-gray-400 hover:text-gray-600   transition-colors"
             >
               <X className="h-5 w-5" />
             </button>
@@ -96,18 +96,18 @@ const DeleteAccountModal = ({ isOpen, onClose, userName }) => {
               <>
                 {step === 1 && (
                   <div className="text-center">
-                    <div className="mx-auto w-16 h-16 bg-red-100 dark:bg-red-900/20 rounded-full flex items-center justify-center mb-4">
-                      <AlertTriangle className="h-8 w-8 text-red-600 dark:text-red-400" />
+                    <div className="mx-auto w-16 h-16 bg-red-100  rounded-full flex items-center justify-center mb-4">
+                      <AlertTriangle className="h-8 w-8 text-red-600 " />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                    <h3 className="text-lg font-semibold text-gray-900  mb-2">
                       Are you sure you want to delete your account?
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 mb-6">
+                    <p className="text-gray-600  mb-6">
                       This action cannot be undone. All your data, tasks, and client information will be permanently deleted.
                     </p>
-                    <div className="bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-6">
-                      <h4 className="font-medium text-red-800 dark:text-red-300 mb-2">What will be deleted:</h4>
-                      <ul className="text-sm text-red-700 dark:text-red-400 space-y-1">
+                    <div className="bg-red-50  border border-red-200  rounded-lg p-4 mb-6">
+                      <h4 className="font-medium text-red-800  mb-2">What will be deleted:</h4>
+                      <ul className="text-sm text-red-700  space-y-1">
                         <li>• All your tasks and projects</li>
                         <li>• Client information and history</li>
                         <li>• Account settings and preferences</li>
@@ -126,20 +126,20 @@ const DeleteAccountModal = ({ isOpen, onClose, userName }) => {
                 {step === 2 && (
                   <div>
                     <div className="text-center mb-6">
-                      <div className="mx-auto w-12 h-12 bg-red-100 dark:bg-red-900/20 rounded-full flex items-center justify-center mb-4">
-                        <Trash2 className="h-6 w-6 text-red-600 dark:text-red-400" />
+                      <div className="mx-auto w-12 h-12 bg-red-100  rounded-full flex items-center justify-center mb-4">
+                        <Trash2 className="h-6 w-6 text-red-600 " />
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                      <h3 className="text-lg font-semibold text-gray-900  mb-2">
                         Final Confirmation
                       </h3>
-                      <p className="text-gray-600 dark:text-gray-400">
+                      <p className="text-gray-600 ">
                         To confirm account deletion, please type <strong>DELETE MY ACCOUNT</strong> in the box below.
                       </p>
                     </div>
 
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <label className="block text-sm font-medium text-gray-700  mb-2">
                           Type confirmation text:
                         </label>
                         <input
@@ -147,9 +147,9 @@ const DeleteAccountModal = ({ isOpen, onClose, userName }) => {
                           value={confirmationText}
                           onChange={(e) => setConfirmationText(e.target.value)}
                           placeholder="DELETE MY ACCOUNT"
-                          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                          className="w-full px-3 py-2 border border-gray-300    rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
                         />
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        <p className="text-xs text-gray-500  mt-1">
                           Required text: <strong>DELETE MY ACCOUNT</strong>
                         </p>
                       </div>
@@ -157,7 +157,7 @@ const DeleteAccountModal = ({ isOpen, onClose, userName }) => {
                       <div className="flex space-x-3">
                         <button
                           onClick={handleBack}
-                          className="flex-1 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 px-4 py-2 rounded-lg transition-colors"
+                          className="flex-1 border border-gray-300  text-gray-700  hover:bg-gray-50  px-4 py-2 rounded-lg transition-colors"
                         >
                           Back
                         </button>
@@ -175,18 +175,18 @@ const DeleteAccountModal = ({ isOpen, onClose, userName }) => {
 
                 {step === 3 && (
                   <div className="text-center">
-                    <div className="mx-auto w-16 h-16 bg-red-100 dark:bg-red-900/20 rounded-full flex items-center justify-center mb-4">
-                      <AlertTriangle className="h-8 w-8 text-red-600 dark:text-red-400" />
+                    <div className="mx-auto w-16 h-16 bg-red-100  rounded-full flex items-center justify-center mb-4">
+                      <AlertTriangle className="h-8 w-8 text-red-600 " />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                    <h3 className="text-lg font-semibold text-gray-900  mb-2">
                       Last Chance
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 mb-6">
+                    <p className="text-gray-600  mb-6">
                       This is your final opportunity to cancel. Once you click "Delete Account", your account will be permanently removed.
                     </p>
                     
-                    <div className="bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-6">
-                      <p className="text-sm text-yellow-800 dark:text-yellow-300">
+                    <div className="bg-yellow-50  border border-yellow-200  rounded-lg p-4 mb-6">
+                      <p className="text-sm text-yellow-800 ">
                         <strong>Warning:</strong> This action is irreversible. All your data will be lost forever.
                       </p>
                     </div>
@@ -194,7 +194,7 @@ const DeleteAccountModal = ({ isOpen, onClose, userName }) => {
                     <div className="flex space-x-3">
                       <button
                         onClick={handleBack}
-                        className="flex-1 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 px-4 py-2 rounded-lg transition-colors"
+                        className="flex-1 border border-gray-300  text-gray-700  hover:bg-gray-50  px-4 py-2 rounded-lg transition-colors"
                       >
                         Cancel
                       </button>
@@ -221,17 +221,17 @@ const DeleteAccountModal = ({ isOpen, onClose, userName }) => {
               </>
             ) : (
               <div className="text-center">
-                <div className="mx-auto w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center mb-4">
-                  <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
+                <div className="mx-auto w-16 h-16 bg-green-100  rounded-full flex items-center justify-center mb-4">
+                  <CheckCircle className="h-8 w-8 text-green-600 " />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                <h3 className="text-lg font-semibold text-gray-900  mb-2">
                   Account Deleted Successfully
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-gray-600  mb-4">
                   Your account has been permanently deleted. You will be redirected to the login page shortly.
                 </p>
-                <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3">
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                <div className="bg-gray-50  rounded-lg p-3">
+                  <p className="text-sm text-gray-600 ">
                     Thank you for using our service. We're sorry to see you go.
                   </p>
                 </div>

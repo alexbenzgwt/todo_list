@@ -4,7 +4,6 @@ import Sidebar from './Sidebar';
 import AddTaskModal from '../modals/AddTaskModal';
 import AddClientModal from '../modals/AddClientModal';
 import ProfilePopup from '../modals/ProfilePopup';
-import { DarkModeProvider } from '../../contexts/DarkModeContext';
 
 const Layout = ({ children }) => {
   const [showAddTaskModal, setShowAddTaskModal] = useState(false);
@@ -33,8 +32,7 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <DarkModeProvider>
-      <div className="h-screen bg-gray-50 dark:bg-gray-900 flex flex-col overflow-hidden">
+    <div className="h-screen bg-gray-50 flex flex-col overflow-hidden">
         <Header 
           onAddTask={handleAddTask} 
           onAddClient={handleAddClient} 
@@ -64,8 +62,7 @@ const Layout = ({ children }) => {
             onClose={() => setShowProfilePopup(false)} 
           />
         )}
-      </div>
-    </DarkModeProvider>
+    </div>
   );
 };
 

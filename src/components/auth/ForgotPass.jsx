@@ -1,14 +1,16 @@
 import { User } from 'lucide-react'
 import React, { useState } from 'react'
 import { loginFailure, loginStart, loginSuccess } from '../../store/slices/authSlice';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ForgotPass = () => {
-  const { loading, error, isAuthenticated } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const handleSubmit =() => {
-        e.preventdefault();
+    const handleSubmit = (e) => {
+        e.preventDefault();
         if (loading) return; // Prevent multiple submissions
             
             dispatch(loginStart());

@@ -49,7 +49,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         <div className="lg:hidden flex justify-end p-4">
           <button
             onClick={onClose}
-            className="p-2 rounded-md text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100"
           >
             <X className="h-6 w-6" />
           </button>
@@ -67,8 +67,8 @@ const Sidebar = ({ isOpen, onClose }) => {
                     className={({ isActive }) =>
                       `flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
                         isActive
-                          ? 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border-r-2 border-red-600'
-                          : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'
+                          ? 'bg-red-50 text-red-700 border-r-2 border-red-600'
+                          : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                       }`
                     }
                   >

@@ -25,9 +25,9 @@ const InvoicePreviewPage = () => {
     clientDetails = {},
     invoiceDetails = {},
     invoiceItems = [],
-    notes = '',
+    // notes = '',
     paymentDetails = {},
-    isPoweredByTruodoit = true
+    // isPoweredByTruodoit = true
   } = invoiceData;
 
   // Calculate totals
@@ -342,305 +342,9 @@ const InvoicePreviewPage = () => {
     }
   };
 
-  const handleDownloadAsPDF = () => {
-    // Create a new window for PDF generation
-    const printWindow = window.open('', '_blank');
-    
-    if (printWindow) {
-      printWindow.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Invoice - ${invoiceDetails.invoiceNo || 'INV-2024-001247'}</title>
-          <style>
-            body { 
-              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-              margin: 0; 
-              padding: 20px; 
-              background: white;
-              color: #333;
-            }
-            .invoice-container { 
-              max-width: 800px; 
-              margin: 0 auto; 
-              background: white;
-              border: 1px solid #e5e7eb;
-              border-radius: 8px;
-              overflow: hidden;
-            }
-            .header { 
-              padding: 32px; 
-              border-bottom: 2px solid #e60e32ff; 
-            }
-            .company-info h2 { 
-              font-size: 24px; 
-              font-weight: bold; 
-              margin: 0 0 8px 0; 
-              color: #111827; 
-            }
-            .company-info p { 
-              margin: 4px 0; 
-              color: #6b7280; 
-            }
-            .invoice-title { 
-              font-size: 36px; 
-              font-weight: bold; 
-              color: #111827; 
-              margin: 0 0 16px 0; 
-              border-bottom: 2px solid #E5E7EB; 
-              padding-bottom: 8px; 
-            }
-            .invoice-details { 
-              text-align: right; 
-            }
-            .invoice-details p { 
-              margin: 8px 0; 
-              color: #6b7280; 
-            }
-            .client-section { 
-              padding: 32px; 
-            }
-            .client-section h4 { 
-              font-size: 18px; 
-              font-weight: 600; 
-              margin: 0 0 16px 0; 
-              color: #111827; 
-            }
-            .client-info p { 
-              margin: 4px 0; 
-              color: #6b7280; 
-            }
-            .client-name { 
-              font-weight: 500; 
-              font-size: 18px; 
-              color: #111827; 
-            }
-            .table-container { 
-              padding: 32px; 
-            }
-            table { 
-              width: 100%; 
-              border-collapse: collapse; 
-            }
-            th { 
-              text-align: left; 
-              padding: 12px 16px; 
-              font-weight: 600; 
-              color: #111827; 
-              border-bottom: 2px solid #e5e7eb; 
-              background: #F2F2F2;
-            }
-            td { 
-              padding: 16px; 
-              border-bottom: 1px solid #f3f4f6; 
-            }
-            .text-right { 
-              text-align: right; 
-            }
-            .text-center { 
-              text-align: center; 
-            }
-            .font-medium { 
-              font-weight: 500; 
-            }
-            .totals-section { 
-              padding: 32px; 
-            }
-            .thank-you { 
-              margin-bottom: 24px; 
-            }
-            .totals { 
-              display: flex; 
-              justify-content: flex-end; 
-            }
-            .totals-inner { 
-              width: 320px; 
-            }
-            .total-row { 
-              display: flex; 
-              justify-content: space-between; 
-              margin: 12px 0; 
-            }
-            .grand-total { 
-              background: #fef2f2; 
-              padding: 16px; 
-              border-radius: 8px; 
-              margin-top: 12px; 
-            }
-            .grand-total .total-row { 
-              font-size: 18px; 
-              font-weight: bold; 
-            }
-            .grand-total .amount { 
-              color: #dc2626; 
-            }
-            .payment-section { 
-              padding: 32px; 
-            }
-            .payment-section h4 { 
-              font-size: 18px; 
-              font-weight: 600; 
-              margin: 0 0 16px 0; 
-              color: #111827; 
-            }
-            .payment-details p { 
-              margin: 8px 0; 
-              color: #6b7280; 
-            }
-            .footer { 
-              padding: 32px; 
-              text-align: right; 
-            }
-            .footer p { 
-              margin: 0; 
-              color: #9ca3af; 
-              font-size: 14px; 
-            }
-            .powered-by { 
-              color: #dc2626; 
-              font-weight: 500; 
-            }
-            @media print {
-              body { margin: 0; padding: 0; }
-              .invoice-container { border: none; box-shadow: none; }
-            }
-          </style>
-        </head>
-        <body>
-          <div class="invoice-container">
-            <div class="header">
-              <!-- Top Section: Logo + Company name on left, INVOICE title on right -->
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-                <div style="display: flex; align-items: center; gap: 16px;">
-                  <div style="width: 67.74px; height: 66.36px; background: #2563EB; border-radius: 11.06px; display: flex; align-items: center; justify-content: center;">
-                    <img src="/svg.png" alt="Company Logo" style="width: 20px; height: 27px;" />
-                  </div>
-                  <div>
-                    <h2 style="margin: 0; font-size: 24px; font-weight: bold; color: #111827;">TechCorp</h2>
-                    <p style="margin: 0; font-size: 19.35px; color: #6b7280;">Business Solutions Pvt Ltd</p>
-                  </div>
-                </div>
-                <div>
-                  <div class="invoice-title">INVOICE</div>
-                </div>
-              </div>
-
-              <!-- Separation line -->
-              <div style="border-top: 1px solid #E5E7EB; margin: 24px 0;"></div>
-
-              <!-- Middle Section: Date on left, Invoice number in center, Address on right -->
-              <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                <!-- Date Section (Left) -->
-                <div>
-                  <p style="margin: 0; font-size: 12px; font-weight: 500; color: #6b7280; text-transform: uppercase;">DATE</p>
-                  <p style="margin: 0; font-size: 18px; font-weight: bold; color: #111827;">${invoiceDetails.date || 'October 4, 2024'}</p>
-                </div>
-
-                <!-- Invoice Number Section (Center) -->
-                <div style="text-align: center;">
-                  <p style="margin: 0; font-size: 12px; font-weight: 500; color: #6b7280; text-transform: uppercase;">INVOICE NUMBER</p>
-                  <p style="margin: 0; font-size: 18px; font-weight: bold; color: #111827;">${invoiceDetails.invoiceNo || 'INV-2024-001247'}</p>
-                </div>
-
-                <!-- Address Section (Right) -->
-                <div style="text-align: right;">
-                  <p style="margin: 0 0 8px 0; font-weight: bold; color: #111827;">TechCorp Business Solutions Pvt Ltd</p>
-                  <div style="display: flex; flex-direction: column; gap: 4px;">
-                    <p style="margin: 0; color: #6b7280;">123 Business Park, Tech City</p>
-                    <p style="margin: 0; color: #6b7280;">GST: 27AABCT1234C1Z5</p>
-                    <p style="margin: 0; color: #6b7280;">Mumbai, Maharashtra - 400001</p>
-                    <p style="margin: 0; color: #6b7280;">Phone: +91 98765 43210</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="client-section">
-              <h4>TO:</h4>
-              <div class="client-info">
-                <p class="client-name">${clientDetails.name || 'ABC Designs'}</p>
-                <p>${clientDetails.company || 'XYZ Co.'}</p>
-                <p>${clientDetails.email || 'client123@gmail.com'}</p>
-                <p>${clientDetails.phone || '7687564852'}</p>
-              </div>
-            </div>
-            
-            <div class="table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Task / Item</th>
-                    <th>Description</th>
-                    <th class="text-center">Quantity</th>
-                    <th class="text-right">Rate</th>
-                    <th class="text-right">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  ${invoiceItems.map(item => `
-                    <tr>
-                      <td class="font-medium">${item.task || 'Logo design'}</td>
-                      <td>${item.description || 'First Draft Delivery'}</td>
-                      <td class="text-center">${item.quantity || 1}</td>
-                      <td class="text-right">${invoiceDetails.currency || '₹'}${(item.rate || 5000).toLocaleString()}</td>
-                      <td class="text-right font-medium">${invoiceDetails.currency || '₹'}${(item.total || 5000).toLocaleString()}</td>
-                    </tr>
-                  `).join('')}
-                </tbody>
-              </table>
-            </div>
-            
-            <div class="totals-section">
-              <div class="thank-you">
-                <p style="font-size: 18px; color: #6b7280;">Thank you for your business</p>
-              </div>
-              <div class="totals">
-                <div class="totals-inner">
-                  <div class="total-row">
-                    <span>tax type ${invoiceDetails.taxType || 'GST'}</span>
-                    <span></span>
-                  </div>
-                  <div class="total-row">
-                    <span>tax 18%</span>
-                    <span>${invoiceDetails.currency || '₹'}${taxAmount.toLocaleString()}</span>
-                  </div>
-                  <div class="grand-total">
-                    <div class="total-row">
-                      <span>Grand Total</span>
-                      <span class="amount">${invoiceDetails.currency || '₹'}${grandTotal.toLocaleString()}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="payment-section">
-              <h4>Payment Details:</h4>
-              <div class="payment-details">
-                <p><strong>Bank Name:</strong> ${paymentDetails.bankName || 'HDFC Bank'}</p>
-                <p><strong>Account Number:</strong> ${paymentDetails.accountNumber || '1234567890123456'}</p>
-                <p><strong>IFSC Code:</strong> ${paymentDetails.ifscCode || 'HDFC0001234'}</p>
-                <p><strong>Account Holder:</strong> ${paymentDetails.accountHolder || 'TechCorp Business Solutions Pvt Ltd'}</p>
-              </div>
-            </div>
-            
-            <div class="footer">
-              <p>Powered by <span class="powered-by">Truodoit</span></p>
-            </div>
-          </div>
-        </body>
-        </html>
-      `);
-      
-      printWindow.document.close();
-      
-      // Wait for content to load, then trigger print dialog
-      setTimeout(() => {
-        printWindow.print();
-        printWindow.close();
-      }, 500);
-    }
-  };
+  // const handleDownloadAsText = () => {
+  //   // Function commented out - unused
+  // };
 
   const handleDownloadAsText = () => {
     // Create text content for download
@@ -709,13 +413,10 @@ Please find attached your invoice for the services provided.
 Invoice Details:
 - Invoice Number: ${invoiceDetails.invoiceNo || 'INV-2024-001247'}
 - Date: ${invoiceDetails.date || 'October 4, 2024'}
-- Amount: ${invoiceDetails.currency || '₹'}${grandTotal.toLocaleString()}
+- Due Date: ${invoiceDetails.dueDate || 'November 3, 2024'}
+- Total Amount: ${invoiceDetails.currency || '₹'}${grandTotal.toLocaleString()}
 
-Payment Details:
-- Bank: ${paymentDetails.bankName || 'HDFC Bank'}
-- Account Number: ${paymentDetails.accountNumber || '1234567890123456'}
-- IFSC Code: ${paymentDetails.ifscCode || 'HDFC0001234'}
-
+Payment Instructions:
 Please make payment by the due date. If you have any questions, please don't hesitate to contact us.
 
 Thank you for your business!
@@ -727,7 +428,7 @@ Email: support@techcorp.com
     `.trim();
 
     // Create mailto link
-    const mailtoLink = `mailto:${clientDetails.email || 'client@example.com'}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    const mailtoLink = `mailto:${clientDetails.email || 'client123@gmail.com'}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
     
     // Open email client
     window.open(mailtoLink, '_blank');

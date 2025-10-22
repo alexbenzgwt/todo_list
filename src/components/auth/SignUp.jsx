@@ -14,7 +14,7 @@ const SignUp = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, error, isAuthenticated } = useSelector((state) => state.auth);
+  const { loading, error } = useSelector((state) => state.auth);
 
   // Redirect if already authenticated
   // useEffect(() => {
@@ -23,7 +23,7 @@ const SignUp = () => {
   //   }
   // }, [isAuthenticated, navigate]);
 
-  let handleClick = (e) => {
+  let handleClick = () => {
       // console.log("click")
       setShow(!show) 
   } 
