@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useSelector } from "react-redux";
-import { Search, Calendar, CheckCircle, Clock, AlertTriangle, MoreVertical, FileText, Download, Users } from "lucide-react";
+import { Search, Calendar, CheckCircle, Clock, AlertTriangle, MoreVertical, FileText, Download, Users, ChevronUp } from "lucide-react";
 
 const Reports = () => {
   // Get data from Redux store
@@ -28,7 +28,29 @@ const Reports = () => {
   const [selectedClient, setSelectedClient] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+  const taskListRef = useRef(null);
 
+  // Handle scroll to show/hide scroll-to-top button
+  const handleScroll = (e) => {
+    const scrollTop = e.target.scrollTop;
+    const scrollHeight = e.target.scrollHeight;
+    const clientHeight = e.target.clientHeight;
+    
+    setShowScrollTop(scrollTop > 100);
+    setShowScrollIndicator(scrollHeight > clientHeight);
+  };
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    if (taskListRef.current) {
+      taskListRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   // Filtered tasks
   const filteredTasks = tasks.filter((task) => {
@@ -131,7 +153,7 @@ const Reports = () => {
 
 
   return (
-    <div className="p-6 bg-white rounded-2xl shadow-md max-w-full mx-auto">
+    <div className="p-6 bg-white rounded-2xl shadow-md max-w-full mx-auto overflow-y-auto max-h-screen">
       <h1 className="text-2xl font-semibold mb-5">Reports</h1>
 
       {/* Combined Search + Client Select */}
@@ -182,8 +204,19 @@ const Reports = () => {
       </div>
 
       {/* Task Section */}
-      <h2 className="text-xl font-medium mt-6 mb-3">Tasks</h2>
-      <div className="space-y-4">
+      <div className="flex items-center justify-between mt-6 mb-3">
+        <h2 className="text-xl font-medium">Tasks</h2>
+        {filteredTasks.length > 0 && (
+          <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+            {filteredTasks.length} task{filteredTasks.length !== 1 ? 's' : ''}
+          </span>
+        )}
+      </div>
+      <div 
+        ref={taskListRef}
+        onScroll={handleScroll}
+        className="space-y-4 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400 pr-2"
+      >
         {filteredTasks.length > 0 ? (
           filteredTasks.map((task) => (
             <div
@@ -257,6 +290,17 @@ const Reports = () => {
         ) : (
           <p className="text-gray-500 text-center py-5">No tasks found.</p>
         )}
+        
+        {/* Scroll Indicator */}
+        {showScrollIndicator && (
+          <div className="text-center py-2">
+            <div className="inline-flex items-center gap-2 text-sm text-gray-400">
+              <div className="w-2 h-2 bg-gray-300 rounded-full animate-bounce"></div>
+              <span>Scroll for more tasks</span>
+              <div className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Export Buttons */}
@@ -275,6 +319,17 @@ const Reports = () => {
           <Download size={18} /> Export as PDF
         </button>
       </div>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 bg-red-500 hover:bg-red-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-50"
+          title="Scroll to top"
+        >
+          <ChevronUp className="h-5 w-5" />
+        </button>
+      )}
     </div>
   );
 };
