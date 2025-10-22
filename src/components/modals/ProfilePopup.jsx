@@ -159,6 +159,11 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
       {/* Profile Popup */}
       <div className="modal-container transform transition-all duration-300 ease-out animate-in slide-in-from-right-4 fade-in">
         <div className="bg-white rounded-xl shadow-xl border border-gray-200 ring-1 ring-black/5 p-4 sm:p-6 h-full max-h-[90vh] sm:max-h-[85vh] flex flex-col overflow-hidden">
+          <div 
+            ref={scrollRef}
+            onScroll={handleScroll}
+            className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400 pr-2"
+          >
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-semibold text-gray-900 ">My Profile</h2>
@@ -230,11 +235,7 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
           </div>
 
           {/* Profile Fields */}
-          <div 
-            ref={scrollRef}
-            onScroll={handleScroll}
-            className="space-y-3 mb-4 flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400 pr-2"
-          >
+          <div className="space-y-3 mb-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700  mb-1">Age</label>
@@ -375,6 +376,7 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
                 <div className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
               </div>
             </div>
+          </div>
           </div>
 
           {/* Bottom Buttons */}
