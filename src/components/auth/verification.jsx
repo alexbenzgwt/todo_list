@@ -45,9 +45,9 @@ const Verification = () => {
             return;
         }
 
-        const char = value.slice(-1); // last character typed
+        const char = value.slice(-1); 
         if (!ONLY_DIGITS_REGEX.test(char)) {
-            return; // ignore non-digits
+            return; 
         }
 
         setOtp((prev) => {
@@ -66,7 +66,6 @@ const Verification = () => {
 
         if (key === 'Backspace') {
             if (otp[index]) {
-                // Clear current cell
                 setOtp((prev) => {
                     const next = [...prev];
                     next[index] = '';
@@ -141,9 +140,7 @@ const Verification = () => {
         setErrorMessage('');
         setIsSubmitting(true);
 
-        // Simulate verification call
         setTimeout(() => {
-            // Example: treat 1234 as success
             if (otpValue === '1234') {
                 navigate('/login');
             } else {
@@ -154,7 +151,6 @@ const Verification = () => {
     };
 
     const handleResend = () => {
-        // Simulate resend: reset timer and clear inputs
         setOtp(['', '', '', '']);
         setErrorMessage('');
         setSecondsLeft(30);
@@ -166,7 +162,7 @@ const Verification = () => {
             <div className="sm:mx-auto sm:w-full sm:max-w-max">
                 <div className="flex justify-center">
                     <div className=" p-3 rounded-lg"> 
-                        <img src="./src/assets/TruedoitLogo.png" alt="" style={{width:"300px", height:"90px"}}/>
+                        <img src="../src/assets/TruedoitLogo.png" alt="TruedoitLogo" style={{width:"300px", height:"90px"}}/>
                         <p className='text-gray-600'>Your freelance journey, made effortless</p>
                     </div>
                 </div>
