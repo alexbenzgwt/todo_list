@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { 
   Lock, 
   Moon, 
@@ -12,7 +12,8 @@ import {
   Eye,
   Camera,
   Upload,
-  Image as ImageIcon
+  Image as ImageIcon,
+  ChevronUp
 } from 'lucide-react';
 import PhotoViewer from './PhotoViewer';
 import ForgotPasswordModal from './ForgotPasswordModal';
@@ -23,6 +24,25 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
   const [showPhotoViewer, setShowPhotoViewer] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [showDeleteAccount, setShowDeleteAccount] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const scrollRef = useRef(null);
+  
+  // Handle scroll to show/hide scroll-to-top button
+  const handleScroll = (e) => {
+    const scrollTop = e.target.scrollTop;
+    setShowScrollTop(scrollTop > 100);
+  };
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const [profilePhoto, setProfilePhoto] = useState(user?.avatar || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face');
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState('');
@@ -138,7 +158,7 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
       
       {/* Profile Popup */}
       <div className="modal-container transform transition-all duration-300 ease-out animate-in slide-in-from-right-4 fade-in">
-        <div className="bg-white  rounded-xl shadow-xl border border-gray-200  ring-1 ring-black/5  p-4 sm:p-6 h-full flex flex-col">
+        <div className="bg-white rounded-xl shadow-xl border border-gray-200 ring-1 ring-black/5 p-4 sm:p-6 h-full max-h-[90vh] sm:max-h-[85vh] flex flex-col overflow-hidden">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-semibold text-gray-900 ">My Profile</h2>
@@ -210,7 +230,11 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
           </div>
 
           {/* Profile Fields */}
-          <div className="space-y-3 mb-4 flex-1 overflow-y-auto">
+          <div 
+            ref={scrollRef}
+            onScroll={handleScroll}
+            className="space-y-3 mb-4 flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400 pr-2"
+          >
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700  mb-1">Age</label>
@@ -342,10 +366,19 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
                 <span className="text-gray-400 ">›</span>
               </button>
             </div>
+            
+            {/* Scroll Indicator */}
+            <div className="text-center py-2">
+              <div className="inline-flex items-center gap-2 text-sm text-gray-400">
+                <div className="w-2 h-2 bg-gray-300 rounded-full animate-bounce"></div>
+                
+                <div className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+              </div>
+            </div>
           </div>
 
           {/* Bottom Buttons */}
-          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 mt-auto">
+          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 mt-auto pt-4 border-t border-gray-200">
             <button
               onClick={handleShareApp}
               className="flex-1 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg flex items-center justify-center space-x-2 transition-colors"
@@ -364,6 +397,17 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
           </div>
         </div>
       </div>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 bg-red-500 hover:bg-red-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-50"
+          title="Scroll to top"
+        >
+          <ChevronUp className="h-5 w-5" />
+        </button>
+      )}
 
       {/* Photo Viewer Modal */}
     <PhotoViewer
