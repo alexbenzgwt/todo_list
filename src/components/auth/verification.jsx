@@ -166,7 +166,7 @@ const Verification = () => {
             <div className="sm:mx-auto sm:w-full sm:max-w-max">
                 <div className="flex justify-center">
                     <div className=" p-3 rounded-lg"> 
-                        <img src="./src/assets/TruedoitLogo.png" alt="" style={{width:"300px", height:"90px"}}/>
+                        <img src="../src/assets/TruedoitLogo.png" alt="" style={{width:"300px", height:"90px"}}/>
                         <p className='text-gray-600'>Your freelance journey, made effortless</p>
                     </div>
                 </div>
