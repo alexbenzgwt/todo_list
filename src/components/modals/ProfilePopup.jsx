@@ -43,7 +43,7 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
     }
   };
 
-  const [profilePhoto, setProfilePhoto] = useState(user?.avatar || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face');
+  const [profilePhoto, setProfilePhoto] = useState(user?.avatar || '/default-avatar.png');
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState('');
   const [originalData, setOriginalData] = useState({
@@ -143,7 +143,7 @@ const ProfilePopup = ({ isOpen, onClose, user }) => {
   };
 
   const handleRemovePhoto = () => {
-    setProfilePhoto('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face');
+    setProfilePhoto('/default-avatar.png');
   };
 
   if (!isOpen) return null;
